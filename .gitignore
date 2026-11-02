@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Environment variables
+.env
+
+# Testing & Type checking
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Index / Vector store (rebuilt via `python -m app.ingest --rebuild`)
+index/
+
+# Temporary / scratch clones & snippets
+k8s-1.27/
+k8s-1.31/
+corpus/v*/examples/
+corpus/v*/glossary/
+corpus/v*/includes/
+
+# OS artifacts
+.DS_Store
+Thumbs.db

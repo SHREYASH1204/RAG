@@ -1,0 +1,1732 @@
+{
+  "RemoveSelfLink": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "Accelerators": {
+    "stage": "deprecated",
+    "fromVersion": "1.11",
+    "defaultValue": null
+  },
+  "AdmissionWebhookMatchConditions": {
+    "stage": "stable",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "AdvancedAuditing": {
+    "stage": "stable",
+    "fromVersion": "1.12",
+    "defaultValue": true
+  },
+  "AffinityInAnnotations": {
+    "stage": "deprecated",
+    "fromVersion": "1.8",
+    "defaultValue": null
+  },
+  "AggregatedDiscoveryEndpoint": {
+    "stage": "stable",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "AllowDNSOnlyNodeCSR": {
+    "stage": "deprecated",
+    "fromVersion": "1.31",
+    "defaultValue": false
+  },
+  "AllowExtTrafficLocalEndpoints": {
+    "stage": "stable",
+    "fromVersion": "1.7",
+    "defaultValue": true
+  },
+  "AllowInsecureBackendProxy": {
+    "stage": "stable",
+    "fromVersion": "1.21",
+    "defaultValue": true
+  },
+  "AllowInsecureKubeletCertificateSigningRequests": {
+    "stage": "deprecated",
+    "fromVersion": "1.31",
+    "defaultValue": false
+  },
+  "AllowServiceLBStatusOnNonLB": {
+    "stage": "deprecated",
+    "fromVersion": "1.29",
+    "defaultValue": false
+  },
+  "AnonymousAuthConfigurableEndpoints": {
+    "stage": "alpha",
+    "fromVersion": "1.31",
+    "defaultValue": false
+  },
+  "AnyVolumeDataSource": {
+    "stage": "beta",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "APIListChunking": {
+    "stage": "stable",
+    "fromVersion": "1.29",
+    "defaultValue": true
+  },
+  "APIPriorityAndFairness": {
+    "stage": "stable",
+    "fromVersion": "1.29",
+    "defaultValue": true
+  },
+  "APIResponseCompression": {
+    "stage": "beta",
+    "fromVersion": "1.16",
+    "defaultValue": true
+  },
+  "APISelfSubjectReview": {
+    "stage": "stable",
+    "fromVersion": "1.28",
+    "defaultValue": true
+  },
+  "APIServerIdentity": {
+    "stage": "beta",
+    "fromVersion": "1.26",
+    "defaultValue": true
+  },
+  "APIServerTracing": {
+    "stage": "beta",
+    "fromVersion": "1.27",
+    "defaultValue": true
+  },
+  "AppArmorFields": {
+    "stage": "stable",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "AppArmor": {
+    "stage": "stable",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "AttachVolumeLimit": {
+    "stage": "stable",
+    "fromVersion": "1.17",
+    "defaultValue": true
+  },
+  "AuthorizeNodeWithSelectors": {
+    "stage": "alpha",
+    "fromVersion": "1.31",
+    "defaultValue": false
+  },
+  "AuthorizeWithSelectors": {
+    "stage": "alpha",
+    "fromVersion": "1.31",
+    "defaultValue": false
+  },
+  "BalanceAttachedNodeVolumes": {
+    "stage": "deprecated",
+    "fromVersion": "1.22",
+    "defaultValue": false
+  },
+  "BlockVolume": {
+    "stage": "stable",
+    "fromVersion": "1.18",
+    "defaultValue": true
+  },
+  "BoundServiceAccountTokenVolume": {
+    "stage": "stable",
+    "fromVersion": "1.22",
+    "defaultValue": true
+  },
+  "CloudControllerManagerWebhook": {
+    "stage": "alpha",
+    "fromVersion": "1.27",
+    "defaultValue": false
+  },
+  "CloudDualStackNodeIPs": {
+    "stage": "stable",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "ClusterTrustBundleProjection": {
+    "stage": "alpha",
+    "fromVersion": "1.29",
+    "defaultValue": false
+  },
+  "ClusterTrustBundle": {
+    "stage": "alpha",
+    "fromVersion": "1.27",
+    "defaultValue": false
+  },
+  "ComponentSLIs": {
+    "stage": "beta",
+    "fromVersion": "1.27",
+    "defaultValue": true
+  },
+  "ConcurrentWatchObjectDecode": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": false
+  },
+  "ConfigurableFSGroupPolicy": {
+    "stage": "stable",
+    "fromVersion": "1.23",
+    "defaultValue": true
+  },
+  "ConsistentHTTPGetHandlers": {
+    "stage": "stable",
+    "fromVersion": "1.25",
+    "defaultValue": true
+  },
+  "ConsistentListFromCache": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "ContainerCheckpoint": {
+    "stage": "beta",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "ContextualLogging": {
+    "stage": "beta",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "ControllerManagerLeaderMigration": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "CoordinatedLeaderElection": {
+    "stage": "alpha",
+    "fromVersion": "1.31",
+    "defaultValue": false
+  },
+  "CPUManagerPolicyAlphaOptions": {
+    "stage": "alpha",
+    "fromVersion": "1.23",
+    "defaultValue": false
+  },
+  "CPUManagerPolicyBetaOptions": {
+    "stage": "beta",
+    "fromVersion": "1.23",
+    "defaultValue": true
+  },
+  "CPUManagerPolicyOptions": {
+    "stage": "beta",
+    "fromVersion": "1.23",
+    "defaultValue": true
+  },
+  "CPUManager": {
+    "stage": "stable",
+    "fromVersion": "1.26",
+    "defaultValue": true
+  },
+  "CRDValidationRatcheting": {
+    "stage": "beta",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "CRIContainerLogRotation": {
+    "stage": "stable",
+    "fromVersion": "1.21",
+    "defaultValue": true
+  },
+  "CronJobControllerV2": {
+    "stage": "stable",
+    "fromVersion": "1.22",
+    "defaultValue": true
+  },
+  "CronJobTimeZone": {
+    "stage": "stable",
+    "fromVersion": "1.27",
+    "defaultValue": true
+  },
+  "CronJobsScheduledAnnotation": {
+    "stage": "beta",
+    "fromVersion": "1.28",
+    "defaultValue": true
+  },
+  "CrossNamespaceVolumeDataSource": {
+    "stage": "alpha",
+    "fromVersion": "1.26",
+    "defaultValue": false
+  },
+  "CSIBlockVolume": {
+    "stage": "stable",
+    "fromVersion": "1.18",
+    "defaultValue": true
+  },
+  "CSIDriverRegistry": {
+    "stage": "stable",
+    "fromVersion": "1.18",
+    "defaultValue": true
+  },
+  "CSIInlineVolume": {
+    "stage": "stable",
+    "fromVersion": "1.25",
+    "defaultValue": true
+  },
+  "CSIMigrationAWSComplete": {
+    "stage": "deprecated",
+    "fromVersion": "1.21",
+    "defaultValue": null
+  },
+  "CSIMigrationAWS": {
+    "stage": "stable",
+    "fromVersion": "1.25",
+    "defaultValue": true
+  },
+  "CSIMigrationAzureDiskComplete": {
+    "stage": "deprecated",
+    "fromVersion": "1.21",
+    "defaultValue": null
+  },
+  "CSIMigrationAzureDisk": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "CSIMigrationAzureFileComplete": {
+    "stage": "deprecated",
+    "fromVersion": "1.21",
+    "defaultValue": null
+  },
+  "CSIMigrationAzureFile": {
+    "stage": "stable",
+    "fromVersion": "1.26",
+    "defaultValue": true
+  },
+  "CSIMigrationGCEComplete": {
+    "stage": "deprecated",
+    "fromVersion": "1.21",
+    "defaultValue": null
+  },
+  "CSIMigrationGCE": {
+    "stage": "stable",
+    "fromVersion": "1.25",
+    "defaultValue": true
+  },
+  "CSIMigrationOpenStackComplete": {
+    "stage": "deprecated",
+    "fromVersion": "1.21",
+    "defaultValue": null
+  },
+  "CSIMigrationOpenStack": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "CSIMigrationPortworx": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "CSIMigrationRBD": {
+    "stage": "deprecated",
+    "fromVersion": "1.28",
+    "defaultValue": false
+  },
+  "CSIMigration": {
+    "stage": "stable",
+    "fromVersion": "1.25",
+    "defaultValue": true
+  },
+  "CSIMigrationvSphereComplete": {
+    "stage": "deprecated",
+    "fromVersion": "1.22",
+    "defaultValue": null
+  },
+  "CSIMigrationvSphere": {
+    "stage": "stable",
+    "fromVersion": "1.26",
+    "defaultValue": true
+  },
+  "CSINodeExpandSecret": {
+    "stage": "stable",
+    "fromVersion": "1.29",
+    "defaultValue": true
+  },
+  "CSINodeInfo": {
+    "stage": "stable",
+    "fromVersion": "1.17",
+    "defaultValue": true
+  },
+  "CSIPersistentVolume": {
+    "stage": "stable",
+    "fromVersion": "1.13",
+    "defaultValue": true
+  },
+  "CSIServiceAccountToken": {
+    "stage": "stable",
+    "fromVersion": "1.22",
+    "defaultValue": true
+  },
+  "CSIStorageCapacity": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "CSIVolumeFSGroupPolicy": {
+    "stage": "stable",
+    "fromVersion": "1.23",
+    "defaultValue": true
+  },
+  "CSIVolumeHealth": {
+    "stage": "alpha",
+    "fromVersion": "1.21",
+    "defaultValue": false
+  },
+  "CSRDuration": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "CustomCPUCFSQuotaPeriod": {
+    "stage": "alpha",
+    "fromVersion": "1.12",
+    "defaultValue": false
+  },
+  "CustomPodDNS": {
+    "stage": "stable",
+    "fromVersion": "1.14",
+    "defaultValue": true
+  },
+  "CustomResourceDefaulting": {
+    "stage": "stable",
+    "fromVersion": "1.17",
+    "defaultValue": true
+  },
+  "CustomResourceFieldSelectors": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "CustomResourcePublishOpenAPI": {
+    "stage": "stable",
+    "fromVersion": "1.16",
+    "defaultValue": true
+  },
+  "CustomResourceSubresources": {
+    "stage": "stable",
+    "fromVersion": "1.16",
+    "defaultValue": true
+  },
+  "CustomResourceValidationExpressions": {
+    "stage": "stable",
+    "fromVersion": "1.29",
+    "defaultValue": true
+  },
+  "CustomResourceValidation": {
+    "stage": "stable",
+    "fromVersion": "1.16",
+    "defaultValue": true
+  },
+  "CustomResourceWebhookConversion": {
+    "stage": "stable",
+    "fromVersion": "1.16",
+    "defaultValue": true
+  },
+  "DaemonSetUpdateSurge": {
+    "stage": "stable",
+    "fromVersion": "1.25",
+    "defaultValue": true
+  },
+  "DefaultHostNetworkHostPortsInPodTemplates": {
+    "stage": "deprecated",
+    "fromVersion": "1.28",
+    "defaultValue": false
+  },
+  "DefaultPodTopologySpread": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "DelegateFSGroupToCSIDriver": {
+    "stage": "stable",
+    "fromVersion": "1.26",
+    "defaultValue": true
+  },
+  "DevicePluginCDIDevices": {
+    "stage": "stable",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "DevicePlugins": {
+    "stage": "stable",
+    "fromVersion": "1.26",
+    "defaultValue": true
+  },
+  "DisableAcceleratorUsageMetrics": {
+    "stage": "stable",
+    "fromVersion": "1.25",
+    "defaultValue": true
+  },
+  "DisableAllocatorDualWrite": {
+    "stage": "alpha",
+    "fromVersion": "1.31",
+    "defaultValue": false
+  },
+  "DisableCloudProviders": {
+    "stage": "stable",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "DisableKubeletCloudCredentialProviders": {
+    "stage": "stable",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "DisableNodeKubeProxyVersion": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "DownwardAPIHugePages": {
+    "stage": "stable",
+    "fromVersion": "1.27",
+    "defaultValue": true
+  },
+  "DRAControlPlaneController": {
+    "stage": "alpha",
+    "fromVersion": "1.26",
+    "defaultValue": false
+  },
+  "DryRun": {
+    "stage": "stable",
+    "fromVersion": "1.19",
+    "defaultValue": true
+  },
+  "DynamicAuditing": {
+    "stage": "deprecated",
+    "fromVersion": "1.19",
+    "defaultValue": null
+  },
+  "DynamicKubeletConfig": {
+    "stage": "deprecated",
+    "fromVersion": "1.22",
+    "defaultValue": false
+  },
+  "DynamicProvisioningScheduling": {
+    "stage": "deprecated",
+    "fromVersion": "1.12",
+    "defaultValue": null
+  },
+  "DynamicResourceAllocation": {
+    "stage": "alpha",
+    "fromVersion": "1.26",
+    "defaultValue": false
+  },
+  "DynamicVolumeProvisioning": {
+    "stage": "stable",
+    "fromVersion": "1.8",
+    "defaultValue": true
+  },
+  "EfficientWatchResumption": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "ElasticIndexedJob": {
+    "stage": "stable",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "EnableAggregatedDiscoveryTimeout": {
+    "stage": "deprecated",
+    "fromVersion": "1.16",
+    "defaultValue": true
+  },
+  "EnableEquivalenceClassCache": {
+    "stage": "deprecated",
+    "fromVersion": "1.13",
+    "defaultValue": null
+  },
+  "EndpointSliceNodeName": {
+    "stage": "stable",
+    "fromVersion": "1.21",
+    "defaultValue": true
+  },
+  "EndpointSliceProxying": {
+    "stage": "stable",
+    "fromVersion": "1.22",
+    "defaultValue": true
+  },
+  "EndpointSliceTerminatingCondition": {
+    "stage": "stable",
+    "fromVersion": "1.26",
+    "defaultValue": true
+  },
+  "EndpointSlice": {
+    "stage": "stable",
+    "fromVersion": "1.21",
+    "defaultValue": true
+  },
+  "EphemeralContainers": {
+    "stage": "stable",
+    "fromVersion": "1.25",
+    "defaultValue": true
+  },
+  "EvenPodsSpread": {
+    "stage": "stable",
+    "fromVersion": "1.19",
+    "defaultValue": true
+  },
+  "EventedPLEG": {
+    "stage": "alpha",
+    "fromVersion": "1.25",
+    "defaultValue": false
+  },
+  "ExecProbeTimeout": {
+    "stage": "stable",
+    "fromVersion": "1.20",
+    "defaultValue": true
+  },
+  "ExpandCSIVolumes": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "ExpandInUsePersistentVolumes": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "ExpandPersistentVolumes": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "ExpandedDNSConfig": {
+    "stage": "stable",
+    "fromVersion": "1.28",
+    "defaultValue": true
+  },
+  "ExperimentalCriticalPodAnnotation": {
+    "stage": "deprecated",
+    "fromVersion": "1.13",
+    "defaultValue": false
+  },
+  "ExperimentalHostUserNamespaceDefaulting": {
+    "stage": "deprecated",
+    "fromVersion": "1.28",
+    "defaultValue": false
+  },
+  "ExternalPolicyForExternalIP": {
+    "stage": "stable",
+    "fromVersion": "1.18",
+    "defaultValue": true
+  },
+  "GCERegionalPersistentDisk": {
+    "stage": "stable",
+    "fromVersion": "1.13",
+    "defaultValue": true
+  },
+  "GenericEphemeralVolume": {
+    "stage": "stable",
+    "fromVersion": "1.23",
+    "defaultValue": true
+  },
+  "GracefulNodeShutdownBasedOnPodPriority": {
+    "stage": "beta",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "GracefulNodeShutdown": {
+    "stage": "beta",
+    "fromVersion": "1.21",
+    "defaultValue": true
+  },
+  "GRPCContainerProbe": {
+    "stage": "stable",
+    "fromVersion": "1.27",
+    "defaultValue": true
+  },
+  "HonorPVReclaimPolicy": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "HPAContainerMetrics": {
+    "stage": "stable",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "HPAScaleToZero": {
+    "stage": "alpha",
+    "fromVersion": "1.16",
+    "defaultValue": false
+  },
+  "HugePageStorageMediumSize": {
+    "stage": "stable",
+    "fromVersion": "1.22",
+    "defaultValue": true
+  },
+  "HugePages": {
+    "stage": "stable",
+    "fromVersion": "1.14",
+    "defaultValue": true
+  },
+  "HyperVContainer": {
+    "stage": "deprecated",
+    "fromVersion": "1.20",
+    "defaultValue": false
+  },
+  "IdentifyPodOS": {
+    "stage": "stable",
+    "fromVersion": "1.25",
+    "defaultValue": true
+  },
+  "ImageMaximumGCAge": {
+    "stage": "beta",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "ImageVolume": {
+    "stage": "alpha",
+    "fromVersion": "1.31",
+    "defaultValue": false
+  },
+  "ImmutableEphemeralVolumes": {
+    "stage": "stable",
+    "fromVersion": "1.21",
+    "defaultValue": true
+  },
+  "InPlacePodVerticalScaling": {
+    "stage": "alpha",
+    "fromVersion": "1.27",
+    "defaultValue": false
+  },
+  "InTreePluginAWSUnregister": {
+    "stage": "alpha",
+    "fromVersion": "1.21",
+    "defaultValue": false
+  },
+  "InTreePluginAzureDiskUnregister": {
+    "stage": "alpha",
+    "fromVersion": "1.21",
+    "defaultValue": false
+  },
+  "InTreePluginAzureFileUnregister": {
+    "stage": "alpha",
+    "fromVersion": "1.21",
+    "defaultValue": false
+  },
+  "InTreePluginGCEUnregister": {
+    "stage": "alpha",
+    "fromVersion": "1.21",
+    "defaultValue": false
+  },
+  "InTreePluginOpenStackUnregister": {
+    "stage": "alpha",
+    "fromVersion": "1.21",
+    "defaultValue": false
+  },
+  "InTreePluginPortworxUnregister": {
+    "stage": "alpha",
+    "fromVersion": "1.23",
+    "defaultValue": false
+  },
+  "InTreePluginRBDUnregister": {
+    "stage": "deprecated",
+    "fromVersion": "1.28",
+    "defaultValue": false
+  },
+  "InTreePluginvSphereUnregister": {
+    "stage": "alpha",
+    "fromVersion": "1.21",
+    "defaultValue": false
+  },
+  "IndexedJob": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "IngressClassNamespacedParams": {
+    "stage": "stable",
+    "fromVersion": "1.23",
+    "defaultValue": true
+  },
+  "Initializers": {
+    "stage": "deprecated",
+    "fromVersion": "1.14",
+    "defaultValue": null
+  },
+  "IPTablesOwnershipCleanup": {
+    "stage": "stable",
+    "fromVersion": "1.28",
+    "defaultValue": true
+  },
+  "IPv6DualStack": {
+    "stage": "stable",
+    "fromVersion": "1.23",
+    "defaultValue": true
+  },
+  "JobBackoffLimitPerIndex": {
+    "stage": "beta",
+    "fromVersion": "1.29",
+    "defaultValue": true
+  },
+  "JobManagedBy": {
+    "stage": "alpha",
+    "fromVersion": "1.30",
+    "defaultValue": false
+  },
+  "JobMutableNodeSchedulingDirectives": {
+    "stage": "stable",
+    "fromVersion": "1.27",
+    "defaultValue": true
+  },
+  "JobPodFailurePolicy": {
+    "stage": "stable",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "JobPodReplacementPolicy": {
+    "stage": "beta",
+    "fromVersion": "1.29",
+    "defaultValue": true
+  },
+  "JobReadyPods": {
+    "stage": "stable",
+    "fromVersion": "1.29",
+    "defaultValue": true
+  },
+  "JobSuccessPolicy": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "JobTrackingWithFinalizers": {
+    "stage": "stable",
+    "fromVersion": "1.26",
+    "defaultValue": true
+  },
+  "KMSv1": {
+    "stage": "deprecated",
+    "fromVersion": "1.29",
+    "defaultValue": false
+  },
+  "KMSv2KDF": {
+    "stage": "stable",
+    "fromVersion": "1.29",
+    "defaultValue": true
+  },
+  "KMSv2": {
+    "stage": "stable",
+    "fromVersion": "1.29",
+    "defaultValue": true
+  },
+  "KubeProxyDrainingTerminatingNodes": {
+    "stage": "stable",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "KubeletCgroupDriverFromCRI": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "KubeletConfigFile": {
+    "stage": "deprecated",
+    "fromVersion": "1.10",
+    "defaultValue": null
+  },
+  "KubeletCredentialProviders": {
+    "stage": "stable",
+    "fromVersion": "1.26",
+    "defaultValue": true
+  },
+  "KubeletInUserNamespace": {
+    "stage": "alpha",
+    "fromVersion": "1.22",
+    "defaultValue": false
+  },
+  "KubeletPluginsWatcher": {
+    "stage": "stable",
+    "fromVersion": "1.13",
+    "defaultValue": true
+  },
+  "KubeletPodResourcesDynamicResources": {
+    "stage": "alpha",
+    "fromVersion": "1.27",
+    "defaultValue": false
+  },
+  "KubeletPodResourcesGetAllocatable": {
+    "stage": "stable",
+    "fromVersion": "1.28",
+    "defaultValue": true
+  },
+  "KubeletPodResourcesGet": {
+    "stage": "alpha",
+    "fromVersion": "1.27",
+    "defaultValue": false
+  },
+  "KubeletPodResources": {
+    "stage": "stable",
+    "fromVersion": "1.28",
+    "defaultValue": true
+  },
+  "KubeletSeparateDiskGC": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "KubeletTracing": {
+    "stage": "beta",
+    "fromVersion": "1.27",
+    "defaultValue": true
+  },
+  "LegacyNodeRoleBehavior": {
+    "stage": "stable",
+    "fromVersion": "1.21",
+    "defaultValue": false
+  },
+  "LegacyServiceAccountTokenCleanUp": {
+    "stage": "stable",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "LegacyServiceAccountTokenNoAutoGeneration": {
+    "stage": "stable",
+    "fromVersion": "1.26",
+    "defaultValue": true
+  },
+  "LegacyServiceAccountTokenTracking": {
+    "stage": "stable",
+    "fromVersion": "1.28",
+    "defaultValue": true
+  },
+  "LoadBalancerIPMode": {
+    "stage": "beta",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "LocalStorageCapacityIsolationFSQuotaMonitoring": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": false
+  },
+  "LocalStorageCapacityIsolation": {
+    "stage": "stable",
+    "fromVersion": "1.25",
+    "defaultValue": true
+  },
+  "LogarithmicScaleDown": {
+    "stage": "stable",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "LoggingAlphaOptions": {
+    "stage": "alpha",
+    "fromVersion": "1.24",
+    "defaultValue": false
+  },
+  "LoggingBetaOptions": {
+    "stage": "beta",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "MatchLabelKeysInPodAffinity": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "MatchLabelKeysInPodTopologySpread": {
+    "stage": "beta",
+    "fromVersion": "1.27",
+    "defaultValue": true
+  },
+  "MaxUnavailableStatefulSet": {
+    "stage": "alpha",
+    "fromVersion": "1.24",
+    "defaultValue": false
+  },
+  "MemoryManager": {
+    "stage": "beta",
+    "fromVersion": "1.22",
+    "defaultValue": true
+  },
+  "MemoryQoS": {
+    "stage": "alpha",
+    "fromVersion": "1.22",
+    "defaultValue": false
+  },
+  "MinDomainsInPodTopologySpread": {
+    "stage": "stable",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "MinimizeIPTablesRestore": {
+    "stage": "stable",
+    "fromVersion": "1.28",
+    "defaultValue": true
+  },
+  "MixedProtocolLBService": {
+    "stage": "stable",
+    "fromVersion": "1.26",
+    "defaultValue": true
+  },
+  "MountContainers": {
+    "stage": "deprecated",
+    "fromVersion": "1.17",
+    "defaultValue": false
+  },
+  "MountPropagation": {
+    "stage": "stable",
+    "fromVersion": "1.12",
+    "defaultValue": true
+  },
+  "MultiCIDRRangeAllocator": {
+    "stage": "alpha",
+    "fromVersion": "1.25",
+    "defaultValue": false
+  },
+  "MultiCIDRServiceAllocator": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": false
+  },
+  "MutatingAdmissionPolicy": {
+    "stage": "alpha",
+    "fromVersion": "1.30",
+    "defaultValue": false
+  },
+  "NamespaceDefaultLabelName": {
+    "stage": "stable",
+    "fromVersion": "1.22",
+    "defaultValue": true
+  },
+  "NetworkPolicyEndPort": {
+    "stage": "stable",
+    "fromVersion": "1.25",
+    "defaultValue": true
+  },
+  "NetworkPolicyStatus": {
+    "stage": "alpha",
+    "fromVersion": "1.24",
+    "defaultValue": false
+  },
+  "NewVolumeManagerReconstruction": {
+    "stage": "stable",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "NFTablesProxyMode": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "NodeDisruptionExclusion": {
+    "stage": "stable",
+    "fromVersion": "1.21",
+    "defaultValue": true
+  },
+  "NodeInclusionPolicyInPodTopologySpread": {
+    "stage": "beta",
+    "fromVersion": "1.26",
+    "defaultValue": true
+  },
+  "NodeLease": {
+    "stage": "stable",
+    "fromVersion": "1.17",
+    "defaultValue": true
+  },
+  "NodeLogQuery": {
+    "stage": "beta",
+    "fromVersion": "1.30",
+    "defaultValue": false
+  },
+  "NodeOutOfServiceVolumeDetach": {
+    "stage": "stable",
+    "fromVersion": "1.28",
+    "defaultValue": true
+  },
+  "NodeSwap": {
+    "stage": "beta",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "NonPreemptingPriority": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "OpenAPIEnums": {
+    "stage": "beta",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "OpenAPIV3": {
+    "stage": "stable",
+    "fromVersion": "1.27",
+    "defaultValue": true
+  },
+  "PDBUnhealthyPodEvictionPolicy": {
+    "stage": "stable",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "PersistentLocalVolumes": {
+    "stage": "stable",
+    "fromVersion": "1.14",
+    "defaultValue": true
+  },
+  "PersistentVolumeLastPhaseTransitionTime": {
+    "stage": "stable",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "PodAffinityNamespaceSelector": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "PodAndContainerStatsFromCRI": {
+    "stage": "alpha",
+    "fromVersion": "1.23",
+    "defaultValue": false
+  },
+  "PodDeletionCost": {
+    "stage": "beta",
+    "fromVersion": "1.22",
+    "defaultValue": true
+  },
+  "PodDisruptionBudget": {
+    "stage": "stable",
+    "fromVersion": "1.21",
+    "defaultValue": true
+  },
+  "PodDisruptionConditions": {
+    "stage": "stable",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "PodHasNetworkCondition": {
+    "stage": "alpha",
+    "fromVersion": "1.25",
+    "defaultValue": false
+  },
+  "PodHostIPs": {
+    "stage": "stable",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "PodIndexLabel": {
+    "stage": "beta",
+    "fromVersion": "1.28",
+    "defaultValue": true
+  },
+  "PodLifecycleSleepAction": {
+    "stage": "beta",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "PodOverhead": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "PodPriority": {
+    "stage": "stable",
+    "fromVersion": "1.14",
+    "defaultValue": true
+  },
+  "PodReadinessGates": {
+    "stage": "stable",
+    "fromVersion": "1.14",
+    "defaultValue": true
+  },
+  "PodReadyToStartContainersCondition": {
+    "stage": "beta",
+    "fromVersion": "1.29",
+    "defaultValue": true
+  },
+  "PodSchedulingReadiness": {
+    "stage": "stable",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "PodSecurity": {
+    "stage": "stable",
+    "fromVersion": "1.25",
+    "defaultValue": true
+  },
+  "PodShareProcessNamespace": {
+    "stage": "stable",
+    "fromVersion": "1.17",
+    "defaultValue": true
+  },
+  "PortForwardWebsockets": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "PreferNominatedNode": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "ProbeTerminationGracePeriod": {
+    "stage": "stable",
+    "fromVersion": "1.28",
+    "defaultValue": true
+  },
+  "ProcMountType": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": false
+  },
+  "ProxyTerminatingEndpoints": {
+    "stage": "stable",
+    "fromVersion": "1.28",
+    "defaultValue": true
+  },
+  "PVCProtection": {
+    "stage": "deprecated",
+    "fromVersion": "1.10",
+    "defaultValue": null
+  },
+  "QOSReserved": {
+    "stage": "alpha",
+    "fromVersion": "1.11",
+    "defaultValue": false
+  },
+  "ReadWriteOncePod": {
+    "stage": "stable",
+    "fromVersion": "1.29",
+    "defaultValue": true
+  },
+  "ReadOnlyAPIDataVolumes": {
+    "stage": "stable",
+    "fromVersion": "1.10",
+    "defaultValue": null
+  },
+  "RecoverVolumeExpansionFailure": {
+    "stage": "alpha",
+    "fromVersion": "1.23",
+    "defaultValue": false
+  },
+  "RecursiveReadOnlyMounts": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "RelaxedEnvironmentVariableValidation": {
+    "stage": "alpha",
+    "fromVersion": "1.30",
+    "defaultValue": false
+  },
+  "ReloadKubeletServerCertificateFile": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "RemainingItemCount": {
+    "stage": "stable",
+    "fromVersion": "1.29",
+    "defaultValue": true
+  },
+  "RequestManagement": {
+    "stage": "deprecated",
+    "fromVersion": "1.17",
+    "defaultValue": null
+  },
+  "ResilientWatchCacheInitialization": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "ResourceHealthStatus": {
+    "stage": "alpha",
+    "fromVersion": "1.31",
+    "defaultValue": false
+  },
+  "ResourceLimitsPriorityFunction": {
+    "stage": "deprecated",
+    "fromVersion": "1.19",
+    "defaultValue": null
+  },
+  "ResourceQuotaScopeSelectors": {
+    "stage": "stable",
+    "fromVersion": "1.17",
+    "defaultValue": true
+  },
+  "RetroactiveDefaultStorageClass": {
+    "stage": "stable",
+    "fromVersion": "1.28",
+    "defaultValue": true
+  },
+  "RetryGenerateName": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "RootCAConfigMap": {
+    "stage": "stable",
+    "fromVersion": "1.21",
+    "defaultValue": true
+  },
+  "RotateKubeletClientCertificate": {
+    "stage": "stable",
+    "fromVersion": "1.19",
+    "defaultValue": true
+  },
+  "RotateKubeletServerCertificate": {
+    "stage": "beta",
+    "fromVersion": "1.12",
+    "defaultValue": true
+  },
+  "RunAsGroup": {
+    "stage": "stable",
+    "fromVersion": "1.21",
+    "defaultValue": true
+  },
+  "RuntimeClassInImageCriApi": {
+    "stage": "alpha",
+    "fromVersion": "1.29",
+    "defaultValue": false
+  },
+  "RuntimeClass": {
+    "stage": "stable",
+    "fromVersion": "1.20",
+    "defaultValue": true
+  },
+  "ScheduleDaemonSetPods": {
+    "stage": "stable",
+    "fromVersion": "1.17",
+    "defaultValue": true
+  },
+  "SchedulerQueueingHints": {
+    "stage": "beta",
+    "fromVersion": "1.29",
+    "defaultValue": false
+  },
+  "SCTPSupport": {
+    "stage": "stable",
+    "fromVersion": "1.20",
+    "defaultValue": true
+  },
+  "SeccompDefault": {
+    "stage": "stable",
+    "fromVersion": "1.27",
+    "defaultValue": true
+  },
+  "SecurityContextDeny": {
+    "stage": "alpha",
+    "fromVersion": "1.27",
+    "defaultValue": false
+  },
+  "SelectorIndex": {
+    "stage": "stable",
+    "fromVersion": "1.20",
+    "defaultValue": true
+  },
+  "SELinuxMountReadWriteOncePod": {
+    "stage": "beta",
+    "fromVersion": "1.28",
+    "defaultValue": true
+  },
+  "SELinuxMount": {
+    "stage": "alpha",
+    "fromVersion": "1.30",
+    "defaultValue": false
+  },
+  "SeparateTaintEvictionController": {
+    "stage": "beta",
+    "fromVersion": "1.29",
+    "defaultValue": true
+  },
+  "ServerSideApply": {
+    "stage": "stable",
+    "fromVersion": "1.22",
+    "defaultValue": true
+  },
+  "ServerSideFieldValidation": {
+    "stage": "stable",
+    "fromVersion": "1.27",
+    "defaultValue": true
+  },
+  "ServiceAccountIssuerDiscovery": {
+    "stage": "stable",
+    "fromVersion": "1.21",
+    "defaultValue": true
+  },
+  "ServiceAccountTokenJTI": {
+    "stage": "beta",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "ServiceAccountTokenNodeBindingValidation": {
+    "stage": "beta",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "ServiceAccountTokenNodeBinding": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "ServiceAccountTokenPodNodeInfo": {
+    "stage": "beta",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "ServiceAppProtocol": {
+    "stage": "stable",
+    "fromVersion": "1.20",
+    "defaultValue": true
+  },
+  "ServiceInternalTrafficPolicy": {
+    "stage": "stable",
+    "fromVersion": "1.26",
+    "defaultValue": true
+  },
+  "ServiceIPStaticSubrange": {
+    "stage": "stable",
+    "fromVersion": "1.26",
+    "defaultValue": true
+  },
+  "ServiceLBNodePortControl": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "ServiceLoadBalancerClass": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "ServiceLoadBalancerFinalizer": {
+    "stage": "stable",
+    "fromVersion": "1.17",
+    "defaultValue": true
+  },
+  "ServiceNodeExclusion": {
+    "stage": "stable",
+    "fromVersion": "1.21",
+    "defaultValue": true
+  },
+  "ServiceNodePortStaticSubrange": {
+    "stage": "stable",
+    "fromVersion": "1.29",
+    "defaultValue": true
+  },
+  "ServiceTopology": {
+    "stage": "deprecated",
+    "fromVersion": "1.20",
+    "defaultValue": false
+  },
+  "ServiceTrafficDistribution": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "SetHostnameAsFQDN": {
+    "stage": "stable",
+    "fromVersion": "1.22",
+    "defaultValue": true
+  },
+  "SidecarContainers": {
+    "stage": "beta",
+    "fromVersion": "1.29",
+    "defaultValue": true
+  },
+  "SizeMemoryBackedVolumes": {
+    "stage": "beta",
+    "fromVersion": "1.22",
+    "defaultValue": true
+  },
+  "SkipReadOnlyValidationGCE": {
+    "stage": "deprecated",
+    "fromVersion": "1.29",
+    "defaultValue": true
+  },
+  "StableLoadBalancerNodeSet": {
+    "stage": "stable",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "StartupProbe": {
+    "stage": "stable",
+    "fromVersion": "1.20",
+    "defaultValue": true
+  },
+  "StatefulSetAutoDeletePVC": {
+    "stage": "beta",
+    "fromVersion": "1.27",
+    "defaultValue": true
+  },
+  "StatefulSetMinReadySeconds": {
+    "stage": "stable",
+    "fromVersion": "1.25",
+    "defaultValue": true
+  },
+  "StatefulSetStartOrdinal": {
+    "stage": "stable",
+    "fromVersion": "1.31",
+    "defaultValue": true
+  },
+  "StorageObjectInUseProtection": {
+    "stage": "stable",
+    "fromVersion": "1.11",
+    "defaultValue": true
+  },
+  "StorageVersionAPI": {
+    "stage": "alpha",
+    "fromVersion": "1.20",
+    "defaultValue": false
+  },
+  "StorageVersionHash": {
+    "stage": "beta",
+    "fromVersion": "1.15",
+    "defaultValue": true
+  },
+  "StorageVersionMigrator": {
+    "stage": "alpha",
+    "fromVersion": "1.30",
+    "defaultValue": false
+  },
+  "StreamingProxyRedirects": {
+    "stage": "deprecated",
+    "fromVersion": "1.22",
+    "defaultValue": false
+  },
+  "StrictCostEnforcementForVAP": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": false
+  },
+  "StrictCostEnforcementForWebhooks": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": false
+  },
+  "StructuredAuthenticationConfiguration": {
+    "stage": "beta",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "StructuredAuthorizationConfiguration": {
+    "stage": "beta",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "SupplementalGroupsPolicy": {
+    "stage": "alpha",
+    "fromVersion": "1.31",
+    "defaultValue": false
+  },
+  "SupportIPVSProxyMode": {
+    "stage": "stable",
+    "fromVersion": "1.11",
+    "defaultValue": true
+  },
+  "SupportNodePidsLimit": {
+    "stage": "stable",
+    "fromVersion": "1.20",
+    "defaultValue": true
+  },
+  "SupportPodPidsLimit": {
+    "stage": "stable",
+    "fromVersion": "1.20",
+    "defaultValue": true
+  },
+  "SuspendJob": {
+    "stage": "stable",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "Sysctls": {
+    "stage": "stable",
+    "fromVersion": "1.21",
+    "defaultValue": true
+  },
+  "TaintBasedEvictions": {
+    "stage": "stable",
+    "fromVersion": "1.18",
+    "defaultValue": true
+  },
+  "TaintNodesByCondition": {
+    "stage": "stable",
+    "fromVersion": "1.17",
+    "defaultValue": true
+  },
+  "TokenRequestProjection": {
+    "stage": "stable",
+    "fromVersion": "1.20",
+    "defaultValue": true
+  },
+  "TokenRequest": {
+    "stage": "stable",
+    "fromVersion": "1.20",
+    "defaultValue": true
+  },
+  "TopologyAwareHints": {
+    "stage": "beta",
+    "fromVersion": "1.24",
+    "defaultValue": true
+  },
+  "TopologyManagerPolicyAlphaOptions": {
+    "stage": "alpha",
+    "fromVersion": "1.26",
+    "defaultValue": false
+  },
+  "TopologyManagerPolicyBetaOptions": {
+    "stage": "beta",
+    "fromVersion": "1.28",
+    "defaultValue": true
+  },
+  "TopologyManagerPolicyOptions": {
+    "stage": "beta",
+    "fromVersion": "1.28",
+    "defaultValue": true
+  },
+  "TopologyManager": {
+    "stage": "stable",
+    "fromVersion": "1.27",
+    "defaultValue": true
+  },
+  "TranslateStreamCloseWebsocketRequests": {
+    "stage": "beta",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "TTLAfterFinished": {
+    "stage": "stable",
+    "fromVersion": "1.23",
+    "defaultValue": true
+  },
+  "UnauthenticatedHTTP2DOSMitigation": {
+    "stage": "beta",
+    "fromVersion": "1.29",
+    "defaultValue": true
+  },
+  "UnknownVersionInteroperabilityProxy": {
+    "stage": "alpha",
+    "fromVersion": "1.28",
+    "defaultValue": false
+  },
+  "UserNamespacesPodSecurityStandards": {
+    "stage": "alpha",
+    "fromVersion": "1.29",
+    "defaultValue": false
+  },
+  "UserNamespacesStatelessPodsSupport": {
+    "stage": "alpha",
+    "fromVersion": "1.25",
+    "defaultValue": false
+  },
+  "UserNamespacesSupport": {
+    "stage": "beta",
+    "fromVersion": "1.30",
+    "defaultValue": false
+  },
+  "ValidateProxyRedirects": {
+    "stage": "deprecated",
+    "fromVersion": "1.22",
+    "defaultValue": true
+  },
+  "ValidatingAdmissionPolicy": {
+    "stage": "stable",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  },
+  "VolumeAttributesClass": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": false
+  },
+  "VolumeCapacityPriority": {
+    "stage": "alpha",
+    "fromVersion": "1.21",
+    "defaultValue": false
+  },
+  "VolumePVCDataSource": {
+    "stage": "stable",
+    "fromVersion": "1.18",
+    "defaultValue": true
+  },
+  "VolumeScheduling": {
+    "stage": "stable",
+    "fromVersion": "1.13",
+    "defaultValue": true
+  },
+  "VolumeSnapshotDataSource": {
+    "stage": "stable",
+    "fromVersion": "1.20",
+    "defaultValue": true
+  },
+  "VolumeSubpathEnvExpansion": {
+    "stage": "stable",
+    "fromVersion": "1.17",
+    "defaultValue": true
+  },
+  "VolumeSubpath": {
+    "stage": "stable",
+    "fromVersion": "1.10",
+    "defaultValue": true
+  },
+  "WarningHeaders": {
+    "stage": "stable",
+    "fromVersion": "1.22",
+    "defaultValue": true
+  },
+  "WatchBookmark": {
+    "stage": "stable",
+    "fromVersion": "1.17",
+    "defaultValue": true
+  },
+  "WatchCacheInitializationPostStartHook": {
+    "stage": "beta",
+    "fromVersion": "1.31",
+    "defaultValue": false
+  },
+  "WatchFromStorageWithoutResourceVersion": {
+    "stage": "beta",
+    "fromVersion": "1.30",
+    "defaultValue": false
+  },
+  "WatchList": {
+    "stage": "alpha",
+    "fromVersion": "1.27",
+    "defaultValue": false
+  },
+  "WinDSR": {
+    "stage": "alpha",
+    "fromVersion": "1.14",
+    "defaultValue": false
+  },
+  "WinOverlay": {
+    "stage": "beta",
+    "fromVersion": "1.20",
+    "defaultValue": true
+  },
+  "WindowsEndpointSliceProxying": {
+    "stage": "stable",
+    "fromVersion": "1.22",
+    "defaultValue": true
+  },
+  "WindowsGMSA": {
+    "stage": "stable",
+    "fromVersion": "1.18",
+    "defaultValue": true
+  },
+  "WindowsHostNetwork": {
+    "stage": "alpha",
+    "fromVersion": "1.26",
+    "defaultValue": true
+  },
+  "WindowsHostProcessContainers": {
+    "stage": "stable",
+    "fromVersion": "1.26",
+    "defaultValue": true
+  },
+  "WindowsRunAsUserName": {
+    "stage": "stable",
+    "fromVersion": "1.18",
+    "defaultValue": true
+  },
+  "ZeroLimitedNominalConcurrencyShares": {
+    "stage": "stable",
+    "fromVersion": "1.30",
+    "defaultValue": true
+  }
+}

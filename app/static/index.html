@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kubernetes Dual-Version RAG Assistant</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --muted: #64748b;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --badge-127: #0284c7;
+      --badge-131: #7c3aed;
+      --refused-bg: #fff1f2;
+      --refused-border: #f43f5e;
+      --refused-text: #9f1239;
+      --highlight: #fef08a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 24px 16px;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    header {
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+    }
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      resize: vertical;
+      min-height: 90px;
+      margin-bottom: 14px;
+    }
+    textarea:focus {
+      outline: 2px solid var(--primary);
+      border-color: transparent;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .version-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    select {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      background: white;
+    }
+    button.ask-btn {
+      padding: 9px 24px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    button.ask-btn:hover:not(:disabled) {
+      background: var(--primary-hover);
+    }
+    button.ask-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .status-line {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      min-height: 20px;
+    }
+    .status-error {
+      color: var(--refused-text);
+      font-weight: 600;
+    }
+    /* Answer box */
+    .answer-card {
+      display: none;
+    }
+    .answer-card.visible {
+      display: block;
+    }
+    .answer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+    .meta-badges {
+      display: flex;
+      gap: 8px;
+      font-size: 0.8rem;
+    }
+    .meta-badge {
+      background: #f1f5f9;
+      color: #475569;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    .answer-body {
+      font-size: 1rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .refused-box {
+      background: var(--refused-bg);
+      border-left: 4px solid var(--refused-border);
+      color: var(--refused-text);
+      padding: 12px 16px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    /* Citation chip */
+    .citation-chip {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--primary);
+      border: 1px solid #bfdbfe;
+      border-radius: 4px;
+      padding: 1px 6px;
+      margin: 0 2px;
+      font-size: 0.8rem;
+      font-family: monospace;
+      cursor: pointer;
+      vertical-align: baseline;
+      transition: background 0.15s;
+    }
+    .citation-chip:hover {
+      background: #dbeafe;
+    }
+    /* References */
+    .references-section {
+      margin-top: 24px;
+    }
+    .reference-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+      margin-bottom: 12px;
+      transition: background-color 0.4s ease, border-color 0.4s ease;
+    }
+    .reference-card.highlighted {
+      background-color: var(--highlight);
+      border-color: #ca8a04;
+    }
+    .ref-header {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+    }
+    .version-tag {
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      color: white;
+      font-size: 0.75rem;
+    }
+    .version-tag.v127 { background: var(--badge-127); }
+    .version-tag.v131 { background: var(--badge-131); }
+    .doc-id {
+      color: #334155;
+      font-family: monospace;
+    }
+    .chunk-id {
+      color: var(--muted);
+      font-family: monospace;
+      font-size: 0.8rem;
+    }
+    blockquote.quote {
+      border-left: 3px solid #cbd5e1;
+      padding-left: 12px;
+      color: #334155;
+      font-size: 0.9rem;
+      font-style: italic;
+      margin-top: 6px;
+    }
+    /* Retrieved chunks collapsible */
+    details.retrieved-details {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    details.retrieved-details summary {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 6px 0;
+    }
+    details.retrieved-details ul {
+      margin: 8px 0 0 18px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Kubernetes Dual-Version RAG Assistant</h1>
+      <p class="subtitle">Query, compare, and verify documentation across Kubernetes 1.27 and 1.31</p>
+    </header>
+
+    <div class="card">
+      <label for="question-input">Ask a question</label>
+      <textarea id="question-input" placeholder="e.g. How many minor versions may the kubelet lag behind kube-apiserver?"></textarea>
+      
+      <div class="controls">
+        <div class="version-group">
+          <label for="version-select" style="margin-bottom:0;">Answer from:</label>
+          <select id="version-select">
+            <option value="">Both versions</option>
+            <option value="1.27">Kubernetes 1.27 only</option>
+            <option value="1.31">Kubernetes 1.31 only</option>
+          </select>
+        </div>
+        <button id="ask-btn" class="ask-btn" onclick="submitQuestion()">Ask</button>
+      </div>
+
+      <div id="status-line" class="status-line"></div>
+    </div>
+
+    <div id="answer-container" class="card answer-card">
+      <div class="answer-header">
+        <strong id="answer-title">Answer</strong>
+        <div class="meta-badges">
+          <span id="pinned-badge" class="meta-badge" style="display:none;"></span>
+          <span id="latency-badge" class="meta-badge"></span>
+        </div>
+      </div>
+      <div id="answer-body" class="answer-body"></div>
+
+      <div id="references-container" class="references-section">
+        <h3 style="font-size:1rem; margin-bottom:12px;">References</h3>
+        <div id="references-list"></div>
+      </div>
+
+      <details id="retrieved-details" class="retrieved-details" style="display:none;">
+        <summary id="retrieved-summary">Retrieved chunks</summary>
+        <ul id="retrieved-list"></ul>
+      </details>
+    </div>
+  </div>
+
+  <script>
+    async function submitQuestion() {
+      const qInput = document.getElementById("question-input");
+      const vSelect = document.getElementById("version-select");
+      const askBtn = document.getElementById("ask-btn");
+      const statusLine = document.getElementById("status-line");
+      const answerContainer = document.getElementById("answer-container");
+      const answerBody = document.getElementById("answer-body");
+      const referencesContainer = document.getElementById("references-container");
+      const referencesList = document.getElementById("references-list");
+      const latencyBadge = document.getElementById("latency-badge");
+      const pinnedBadge = document.getElementById("pinned-badge");
+      const retrievedDetails = document.getElementById("retrieved-details");
+      const retrievedSummary = document.getElementById("retrieved-summary");
+      const retrievedList = document.getElementById("retrieved-list");
+
+      const question = qInput.value.trim();
+      if (!question) {
+        statusLine.textContent = "Please enter a question.";
+        statusLine.className = "status-line status-error";
+        return;
+      }
+
+      // Prepare request payload using existing fields
+      const payload = { question: question, top_k: 5 };
+      const selectedVersion = vSelect.value;
+      if (selectedVersion) {
+        payload.version = selectedVersion;
+      }
+
+      // UI state: disable button, show waiting message
+      askBtn.disabled = true;
+      statusLine.className = "status-line";
+      statusLine.textContent = "Thinking... this can take up to a minute on a local model";
+      answerContainer.classList.remove("visible");
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 180000); // 180s timeout
+
+      try {
+        const response = await fetch("/ask", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+          signal: controller.signal
+        });
+
+        clearTimeout(timeoutId);
+
+        if (!response.ok && response.status !== 200) {
+          throw new Error("HTTP error " + response.status);
+        }
+
+        const data = await response.json();
+
+        // Validate exact 5-field schema
+        const requiredFields = ["answer", "refused", "citations", "retrieved_chunk_ids", "latency_ms"];
+        const hasAllFields = requiredFields.every(f => Object.prototype.hasOwnProperty.call(data, f));
+        if (!hasAllFields) {
+          throw new Error("Response JSON does not match the required 5-field schema.");
+        }
+
+        // Render response
+        statusLine.textContent = "";
+        answerContainer.classList.add("visible");
+        latencyBadge.textContent = (data.latency_ms || 0) + " ms";
+
+        if (selectedVersion) {
+          pinnedBadge.style.display = "inline-block";
+          pinnedBadge.textContent = "Answer from: " + selectedVersion + " only";
+        } else {
+          pinnedBadge.style.display = "none";
+        }
+
+        // Clear previous render
+        answerBody.replaceChildren();
+        referencesList.replaceChildren();
+        retrievedList.replaceChildren();
+
+        if (data.refused) {
+          // Refusal state styling
+          referencesContainer.style.display = "none";
+          const refusedDiv = document.createElement("div");
+          refusedDiv.className = "refused-box";
+          refusedDiv.textContent = data.answer || "Request refused.";
+          answerBody.appendChild(refusedDiv);
+        } else {
+          referencesContainer.style.display = "block";
+          renderAnswerWithChips(data.answer, answerBody);
+          renderReferences(data.citations, referencesList);
+        }
+
+        // Render retrieved chunks collapsed section
+        const retrieved = data.retrieved_chunk_ids || [];
+        if (retrieved.length > 0) {
+          retrievedDetails.style.display = "block";
+          retrievedSummary.textContent = "Retrieved chunks (" + retrieved.length + ")";
+          for (const cid of retrieved) {
+            const li = document.createElement("li");
+            li.textContent = cid;
+            retrievedList.appendChild(li);
+          }
+        } else {
+          retrievedDetails.style.display = "none";
+        }
+
+      } catch (err) {
+        clearTimeout(timeoutId);
+        statusLine.className = "status-line status-error";
+        if (err.name === "AbortError") {
+          statusLine.textContent = "Request timed out after 180 seconds.";
+        } else {
+          statusLine.textContent = "Error: " + (err.message || "Failed to fetch response.");
+        }
+      } finally {
+        askBtn.disabled = false;
+      }
+    }
+
+    // Safely render answer text and convert [chunk_id] into clickable chips
+    function renderAnswerWithChips(rawText, container) {
+      if (!rawText) return;
+      const markerRegex = /\[([a-zA-Z0-9_\-\.:/#]+)\]/g;
+      let lastIndex = 0;
+      let match;
+
+      while ((match = markerRegex.exec(rawText)) !== null) {
+        const textBefore = rawText.substring(lastIndex, match.index);
+        if (textBefore) {
+          container.appendChild(document.createTextNode(textBefore));
+        }
+
+        const cid = match[1];
+        const chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = "citation-chip";
+        chip.textContent = "[" + cid + "]";
+        chip.addEventListener("click", () => scrollToCitation(cid));
+        container.appendChild(chip);
+
+        lastIndex = match.index + match[0].length;
+      }
+
+      const textAfter = rawText.substring(lastIndex);
+      if (textAfter) {
+        container.appendChild(document.createTextNode(textAfter));
+      }
+    }
+
+    // Render reference cards
+    function renderReferences(citations, container) {
+      if (!citations || citations.length === 0) {
+        const p = document.createElement("p");
+        p.style.color = "var(--muted)";
+        p.style.fontSize = "0.9rem";
+        p.textContent = "No citations attached.";
+        container.appendChild(p);
+        return;
+      }
+
+      citations.forEach((cit, idx) => {
+        const card = document.createElement("div");
+        card.className = "reference-card";
+        const cid = cit.chunk_id || ("ref-" + idx);
+        card.id = "ref-" + cid;
+
+        const header = document.createElement("div");
+        header.className = "ref-header";
+
+        const badge = document.createElement("span");
+        const ver = cit.version || "both";
+        badge.className = "version-tag " + (ver === "1.27" ? "v127" : "v131");
+        badge.textContent = "v" + ver;
+        header.appendChild(badge);
+
+        const docSpan = document.createElement("span");
+        docSpan.className = "doc-id";
+        docSpan.textContent = cit.doc_id || "";
+        header.appendChild(docSpan);
+
+        const chunkSpan = document.createElement("span");
+        chunkSpan.className = "chunk-id";
+        chunkSpan.textContent = "#" + cid;
+        header.appendChild(chunkSpan);
+
+        card.appendChild(header);
+
+        if (cit.quote) {
+          const bq = document.createElement("blockquote");
+          bq.className = "quote";
+          bq.textContent = cit.quote;
+          card.appendChild(bq);
+        }
+
+        container.appendChild(card);
+      });
+    }
+
+    function scrollToCitation(cid) {
+      const target = document.getElementById("ref-" + cid);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "center" });
+        target.classList.add("highlighted");
+        setTimeout(() => target.classList.remove("highlighted"), 2000);
+      }
+    }
+  </script>
+</body>
+</html>
+

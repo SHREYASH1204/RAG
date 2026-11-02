@@ -1,0 +1,1839 @@
+{
+  "evaluation_date": "2026-10-30T11:20:09.153935+00:00",
+  "dataset": "eval\\eval_set.jsonl",
+  "total_questions": 44,
+  "note": "Evaluation performed on the full verified 44-question set (eval\\eval_set.jsonl).",
+  "thresholds": {
+    "REFUSE_MIN_SCORE": 0.6,
+    "MIN_SUPPORT": 0.5,
+    "REL_MIN_COVERAGE": 0.4
+  },
+  "metrics": {
+    "overall_accuracy_pct": 61.36,
+    "content_check_must_include_pct": 61.36,
+    "answered_and_verified_pct": 90.91,
+    "accuracy_names": {
+      "answered and verified (not refused, citations valid, versions named and cited)": 90.91,
+      "content check (must_include)": 61.36
+    },
+    "accuracy_per_type": {
+      "version_conflict": 30.0,
+      "only_in_one_version": 60.0,
+      "unanswerable": 90.0,
+      "false_premise": 75.0,
+      "same_in_both": 33.33,
+      "procedural": 60.0,
+      "multi_chunk": 100.0,
+      "table_or_code": 100.0
+    },
+    "version_conflict_strict_accuracy_pct": 30.0,
+    "version_conflict_grader_pass_pct": 80.0,
+    "version_conflict_grader_pass_count": 8,
+    "version_conflict_total_count": 10,
+    "overall_refusal_rate_pct": 29.55,
+    "refusals_by_reason": {
+      "weak_retrieval": 0,
+      "model_unsupported": 5,
+      "no_valid_citation": 0,
+      "irrelevant_evidence": 1,
+      "false_premise": 3,
+      "language/empty input": 0,
+      "internal_error": 0,
+      "model_nonanswer": 4
+    },
+    "correct_refusal_rate_pct": 92.86,
+    "false_refusal_rate_pct": 0.0,
+    "citation_verification_rate_pct": 100.0,
+    "hallucination_rate_pct": 77.42,
+    "retrieval": {
+      "recall@1_pct": 62.79,
+      "recall@3_pct": 69.77,
+      "recall@5_pct": 74.42,
+      "recall@10_pct": 83.72,
+      "mrr": 0.6821
+    },
+    "latency": {
+      "p50_retrieval_ms": 165.5,
+      "p95_retrieval_ms": 1063.8,
+      "p50_llm_ms": 25479.5,
+      "p95_llm_ms": 40245.2,
+      "p50_total_ms": 25926.0,
+      "p95_total_ms": 40370.25
+    }
+  },
+  "top_3_confidently_wrong": [
+    {
+      "qid": "Q-006",
+      "question": "Is swap memory supported on Kubernetes nodes, and what is its feature state?",
+      "type": "version_conflict",
+      "answer": "In Kubernetes 1.27, swap memory support can be enabled on a per-node basis with the NodeSwap feature gate enabled on the kubelet and the --fail-swap-on command line flag or failSwapOn configuration setting set to false [v1.27:concepts/architecture/nodes#c18]. In Kubernetes 1.31, swap memory support is enabled with the NodeSwap feature gate set to true by default, and the --fail-swap-on command line flag or failSwapOn configuration setting set to false [v1.31:concepts/architecture/nodes#c11].",
+      "why_wrong": "Missing must_include terms: ['alpha', 'beta']"
+    },
+    {
+      "qid": "Q-036",
+      "question": "How do I create a Secret with kubectl?",
+      "type": "procedural",
+      "answer": "In Kubernetes 1.27, and In Kubernetes 1.31,, you can create a Secret using the kubectl create secret command [v1.27:tasks/inject-data-application/distribute-credentials-secure#c4]. For example, to create a Secret that stores the username 'my-app' and the password '39528$vdg7Jb', you would use the command: [v1.27:tasks/inject-data-application/distribute-credentials-secure#c4].",
+      "why_wrong": "Missing must_include terms: ['generic']"
+    },
+    {
+      "qid": "Q-007",
+      "question": "Which API version do the FlowSchema and PriorityLevelConfiguration examples use?",
+      "type": "version_conflict",
+      "answer": "In Kubernetes 1.31, the FlowSchema and PriorityLevelConfiguration examples use the API group flowcontrol.apiserver.k8s.io/v1 [v1.31:concepts/cluster-administration/flow-control#c26].",
+      "why_wrong": "Missing must_include terms: ['v1beta3']"
+    }
+  ],
+  "hardware_and_model": {
+    "os": "Windows",
+    "os_release": "11",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "cpu_count": 12,
+    "total_ram_gb": 7.34,
+    "python_version": "3.12.10",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce GTX 1650",
+    "gpu_vram_gb": 4.0,
+    "model_name": "qwen2.5:3b",
+    "model_details": {
+      "format": "gguf",
+      "family": "qwen2",
+      "parameter_size": "3.1B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 32768
+    }
+  },
+  "per_question_results": [
+    {
+      "qid": "Q-001",
+      "type": "version_conflict",
+      "question": "How many minor versions may the kubelet lag behind kube-apiserver?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "For Kubernetes 1.27, the kubelet may lag up to 1 minor version behind kube-apiserver [v1.27:releases/version-skew-policy#c10]. For Kubernetes 1.31, the kubelet may lag up to 2 minor versions behind kube-apiserver [v1.31:releases/version-skew-policy#c10].",
+      "citations": [
+        {
+          "doc_id": "releases/version-skew-policy",
+          "chunk_id": "v1.27:releases/version-skew-policy#c10",
+          "version": "1.27",
+          "quote": "Pre-requisites: * The kube-apiserver instances the kubelet communicates with are at 1.27 Optionally upgrade kubelet instances to 1.27 (or they can be left at 1.26 or 1.25) Note: Before performing a minor version kubelet upgrade, drain pods from that node."
+        },
+        {
+          "doc_id": "releases/version-skew-policy",
+          "chunk_id": "v1.31:releases/version-skew-policy#c10",
+          "version": "1.31",
+          "quote": "Pre-requisites: * The kube-apiserver instances the kubelet communicates with are at 1.31 Optionally upgrade kubelet instances to 1.31 (or they can be left at 1.30, 1.29, or 1.28) Note: Before performing a minor version kubelet upgrade, drain pods from that node."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:releases/version-skew-policy#c10",
+        "v1.31:releases/version-skew-policy#c10",
+        "v1.31:releases/version-skew-policy#c8",
+        "v1.27:releases/version-skew-policy#c8",
+        "v1.31:releases/version-skew-policy#c3",
+        "v1.27:tasks/debug/debug-cluster/_index#c8",
+        "v1.31:tasks/debug/debug-cluster/_index#c8",
+        "v1.27:releases/version-skew-policy#c3",
+        "v1.27:concepts/extend-kubernetes/api-extension/apiserver-aggregation#c2",
+        "v1.31:concepts/extend-kubernetes/api-extension/apiserver-aggregation#c2"
+      ],
+      "latency_ms": 43022,
+      "retrieval_ms": 101,
+      "llm_ms": 42894,
+      "is_correct": false,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": true,
+      "failed_condition": "Missing must_include terms: ['two', 'three']",
+      "why_wrong": "Missing must_include terms: ['two', 'three']"
+    },
+    {
+      "qid": "Q-002",
+      "type": "version_conflict",
+      "question": "How far behind kube-apiserver can kube-proxy be?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "In Kubernetes 1.27, kube-proxy can be up to two minor versions older or newer than the kube-apiserver instance it runs alongside [v1.27:releases/version-skew-policy#c4]. In Kubernetes 1.31, kube-proxy can be up to three minor versions older or newer than the kube-apiserver instance it runs alongside [v1.31:releases/version-skew-policy#c11].",
+      "citations": [
+        {
+          "doc_id": "releases/version-skew-policy",
+          "chunk_id": "v1.27:releases/version-skew-policy#c4",
+          "version": "1.27",
+          "quote": "kube-proxy may be up to two minor versions older or newer than the kubelet instance it runs alongside."
+        },
+        {
+          "doc_id": "releases/version-skew-policy",
+          "chunk_id": "v1.31:releases/version-skew-policy#c11",
+          "version": "1.31",
+          "quote": "Pre-requisites: * The kube-apiserver instances kube-proxy communicates with are at 1.31 Optionally upgrade kube-proxy instances to 1.31 (or they can be left at 1.30, 1.29, or 1.28) Warning: Running a cluster with kube-proxy instances that are persistently three minor versions behind kube-apiserver m"
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:releases/version-skew-policy#c11",
+        "v1.31:releases/version-skew-policy#c11",
+        "v1.27:tasks/extend-kubernetes/http-proxy-access-api#c2",
+        "v1.31:tasks/extend-kubernetes/http-proxy-access-api#c2",
+        "v1.27:releases/version-skew-policy#c4",
+        "v1.27:tasks/access-application-cluster/access-cluster#c12",
+        "v1.31:tasks/access-application-cluster/access-cluster#c12",
+        "v1.27:tasks/access-application-cluster/access-cluster#c3",
+        "v1.31:tasks/access-application-cluster/access-cluster#c3",
+        "v1.31:concepts/cluster-administration/proxies#c1"
+      ],
+      "latency_ms": 18984,
+      "retrieval_ms": 669,
+      "llm_ms": 18302,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": true,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-003",
+      "type": "version_conflict",
+      "question": "What is the feature state of the Pod failure policy for Jobs?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "In Kubernetes 1.27, FEATURE STATE: Kubernetes v1.26 [beta] [v1.27:concepts/workloads/controllers/job#c11]. In Kubernetes 1.31, FEATURE STATE: Kubernetes v1.31 [stable] [v1.31:concepts/workloads/controllers/job#c12].",
+      "citations": [
+        {
+          "doc_id": "concepts/workloads/controllers/job",
+          "chunk_id": "v1.27:concepts/workloads/controllers/job#c11",
+          "version": "1.27",
+          "quote": "FEATURE STATE: Kubernetes v1.26 [beta] Note: You can only configure a Pod failure policy for a Job if you have the JobPodFailurePolicy feature gate enabled in your cluster."
+        },
+        {
+          "doc_id": "concepts/workloads/controllers/job",
+          "chunk_id": "v1.31:concepts/workloads/controllers/job#c12",
+          "version": "1.31",
+          "quote": "FEATURE STATE: Kubernetes v1.31 [stable] A Pod failure policy, defined with the .spec.podFailurePolicy field, enables your cluster to handle Pod failures based on the container exit codes and the Pod conditions."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:tasks/job/pod-failure-policy#c2",
+        "v1.31:tasks/job/pod-failure-policy#c2",
+        "v1.27:concepts/workloads/controllers/job#c11",
+        "v1.31:concepts/workloads/controllers/job#c12",
+        "v1.27:tasks/job/pod-failure-policy#c0",
+        "v1.31:tasks/job/pod-failure-policy#c0",
+        "v1.27:concepts/workloads/controllers/job#c9",
+        "v1.27:concepts/workloads/controllers/job#c10",
+        "v1.31:concepts/workloads/controllers/job#c9",
+        "v1.31:concepts/workloads/controllers/job#c10"
+      ],
+      "latency_ms": 22542,
+      "retrieval_ms": 682,
+      "llm_ms": 21835,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": true,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-004",
+      "type": "version_conflict",
+      "question": "What is the feature state of the ReadWriteOncePod access mode for PersistentVolumes?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "The ReadWriteOncePod access mode for PersistentVolumes is FEATURE STATE: Kubernetes v1.29 [stable] [v1.31:concepts/storage/persistent-volumes#c24].",
+      "citations": [
+        {
+          "doc_id": "concepts/storage/persistent-volumes",
+          "chunk_id": "v1.31:concepts/storage/persistent-volumes#c24",
+          "version": "1.31",
+          "quote": "ReadWriteOncePod : FEATURE STATE: Kubernetes v1.29 [stable] the volume can be mounted as read-write by a single Pod."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.31:tasks/administer-cluster/change-pv-access-mode-readwriteoncepod#c0",
+        "v1.31:tasks/administer-cluster/change-pv-access-mode-readwriteoncepod#c2",
+        "v1.31:tasks/administer-cluster/change-pv-access-mode-readwriteoncepod#c3",
+        "v1.27:concepts/storage/persistent-volumes#c24",
+        "v1.31:concepts/storage/persistent-volumes#c24",
+        "v1.31:tasks/administer-cluster/change-pv-access-mode-readwriteoncepod#c4",
+        "v1.27:concepts/storage/persistent-volumes#c1",
+        "v1.27:tasks/configure-pod-container/configure-persistent-volume-storage#c4",
+        "v1.27:concepts/storage/persistent-volumes#c41",
+        "v1.27:concepts/storage/volumes#c31"
+      ],
+      "latency_ms": 17622,
+      "retrieval_ms": 124,
+      "llm_ms": 17485,
+      "is_correct": false,
+      "answered_and_verified": false,
+      "version_conflict_grader_pass": false,
+      "failed_condition": "Missing must_include terms: ['beta']",
+      "why_wrong": "Missing must_include terms: ['beta']"
+    },
+    {
+      "qid": "Q-005",
+      "type": "version_conflict",
+      "question": "What is the feature state of Pod scheduling readiness (scheduling gates)?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "In Kubernetes 1.27, the feature state of Pod scheduling readiness (scheduling gates) is FEATURE STATE: Kubernetes v1.26 [alpha] [v1.27:concepts/scheduling-eviction/pod-scheduling-readiness#c0]. In Kubernetes 1.31, the feature state is FEATURE STATE: Kubernetes v1.30 [stable] [v1.31:concepts/scheduling-eviction/pod-scheduling-readiness#c0].",
+      "citations": [
+        {
+          "doc_id": "concepts/scheduling-eviction/pod-scheduling-readiness",
+          "chunk_id": "v1.27:concepts/scheduling-eviction/pod-scheduling-readiness#c0",
+          "version": "1.27",
+          "quote": "FEATURE STATE: Kubernetes v1.26 [alpha] Pods were considered ready for scheduling once created."
+        },
+        {
+          "doc_id": "concepts/scheduling-eviction/pod-scheduling-readiness",
+          "chunk_id": "v1.31:concepts/scheduling-eviction/pod-scheduling-readiness#c0",
+          "version": "1.31",
+          "quote": "FEATURE STATE: Kubernetes v1.30 [stable] Pods were considered ready for scheduling once created."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.31:concepts/scheduling-eviction/pod-scheduling-readiness#c2",
+        "v1.27:concepts/scheduling-eviction/pod-scheduling-readiness#c2",
+        "v1.27:concepts/scheduling-eviction/pod-scheduling-readiness#c3",
+        "v1.31:concepts/scheduling-eviction/pod-scheduling-readiness#c3",
+        "v1.27:concepts/scheduling-eviction/pod-scheduling-readiness#c0",
+        "v1.31:concepts/scheduling-eviction/pod-scheduling-readiness#c0",
+        "v1.27:concepts/workloads/pods/pod-lifecycle#c12",
+        "v1.27:concepts/scheduling-eviction/pod-scheduling-readiness#c1",
+        "v1.31:concepts/scheduling-eviction/pod-scheduling-readiness#c1",
+        "v1.31:concepts/scheduling-eviction/pod-scheduling-readiness#c5"
+      ],
+      "latency_ms": 20084,
+      "retrieval_ms": 66,
+      "llm_ms": 20010,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": true,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-006",
+      "type": "version_conflict",
+      "question": "Is swap memory supported on Kubernetes nodes, and what is its feature state?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "In Kubernetes 1.27, swap memory support can be enabled on a per-node basis with the NodeSwap feature gate enabled on the kubelet and the --fail-swap-on command line flag or failSwapOn configuration setting set to false [v1.27:concepts/architecture/nodes#c18]. In Kubernetes 1.31, swap memory support is enabled with the NodeSwap feature gate set to true by default, and the --fail-swap-on command line flag or failSwapOn configuration setting set to false [v1.31:concepts/architecture/nodes#c11].",
+      "citations": [
+        {
+          "doc_id": "concepts/architecture/nodes",
+          "chunk_id": "v1.27:concepts/architecture/nodes#c18",
+          "version": "1.27",
+          "quote": "To enable swap on a node, the NodeSwap feature gate must be enabled on the kubelet, and the --fail-swap-on command line flag or failSwapOn configuration setting must be set to false."
+        },
+        {
+          "doc_id": "concepts/architecture/nodes",
+          "chunk_id": "v1.31:concepts/architecture/nodes#c11",
+          "version": "1.31",
+          "quote": "FEATURE STATE: Kubernetes v1.30 [beta] To enable swap on a node, the NodeSwap feature gate must be enabled on the kubelet (default is true), and the --fail-swap-on command line flag or failSwapOn configuration setting must be set to false."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/architecture/nodes#c18",
+        "v1.31:concepts/architecture/nodes#c11",
+        "v1.27:tasks/administer-cluster/memory-manager#c9",
+        "v1.31:tasks/administer-cluster/memory-manager#c9",
+        "v1.27:tasks/administer-cluster/memory-manager#c0",
+        "v1.31:tasks/administer-cluster/memory-manager#c0",
+        "v1.31:tasks/administer-cluster/memory-manager#c1",
+        "v1.27:tasks/administer-cluster/memory-manager#c1",
+        "v1.31:tasks/configure-pod-container/resize-container-resources#c1",
+        "v1.27:tasks/administer-cluster/kubeadm/kubeadm-reconfigure#c12"
+      ],
+      "latency_ms": 25914,
+      "retrieval_ms": 74,
+      "llm_ms": 25826,
+      "is_correct": false,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": true,
+      "failed_condition": "Missing must_include terms: ['alpha', 'beta']",
+      "why_wrong": "Missing must_include terms: ['alpha', 'beta']"
+    },
+    {
+      "qid": "Q-007",
+      "type": "version_conflict",
+      "question": "Which API version do the FlowSchema and PriorityLevelConfiguration examples use?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "In Kubernetes 1.31, the FlowSchema and PriorityLevelConfiguration examples use the API group flowcontrol.apiserver.k8s.io/v1 [v1.31:concepts/cluster-administration/flow-control#c26].",
+      "citations": [
+        {
+          "doc_id": "concepts/cluster-administration/flow-control",
+          "chunk_id": "v1.31:concepts/cluster-administration/flow-control#c26",
+          "version": "1.31",
+          "quote": "apiVersion: flowcontrol.apiserver.k8s.io/v1"
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/cluster-administration/flow-control#c8",
+        "v1.31:concepts/cluster-administration/flow-control#c9",
+        "v1.31:concepts/cluster-administration/flow-control#c26",
+        "v1.31:concepts/cluster-administration/flow-control#c24",
+        "v1.31:concepts/cluster-administration/flow-control#c18",
+        "v1.31:concepts/cluster-administration/flow-control#c17",
+        "v1.27:concepts/cluster-administration/flow-control#c10",
+        "v1.27:concepts/cluster-administration/flow-control#c12",
+        "v1.27:concepts/cluster-administration/flow-control#c17",
+        "v1.27:concepts/cluster-administration/flow-control#c16"
+      ],
+      "latency_ms": 16537,
+      "retrieval_ms": 128,
+      "llm_ms": 16395,
+      "is_correct": false,
+      "answered_and_verified": false,
+      "version_conflict_grader_pass": false,
+      "failed_condition": "Missing must_include terms: ['v1beta3']",
+      "why_wrong": "Missing must_include terms: ['v1beta3']"
+    },
+    {
+      "qid": "Q-008",
+      "type": "version_conflict",
+      "question": "What is the feature state of the start ordinal (.spec.ordinals.start) field for StatefulSets?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "For Kubernetes 1.27, the feature state of the start ordinal (.spec.ordinals.start) field is [v1.27:concepts/workloads/controllers/statefulset#c9]. For Kubernetes 1.31, the feature state is [v1.31:concepts/workloads/controllers/statefulset#c9].",
+      "citations": [
+        {
+          "doc_id": "concepts/workloads/controllers/statefulset",
+          "chunk_id": "v1.27:concepts/workloads/controllers/statefulset#c9",
+          "version": "1.27",
+          "quote": "FEATURE STATE: Kubernetes v1.27 [beta] .spec.ordinals is an optional field that allows you to configure the integer ordinals assigned to each Pod."
+        },
+        {
+          "doc_id": "concepts/workloads/controllers/statefulset",
+          "chunk_id": "v1.31:concepts/workloads/controllers/statefulset#c9",
+          "version": "1.31",
+          "quote": "FEATURE STATE: Kubernetes v1.31 [stable] .spec.ordinals is an optional field that allows you to configure the integer ordinals assigned to each Pod."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/workloads/controllers/statefulset#c9",
+        "v1.31:concepts/workloads/controllers/statefulset#c9",
+        "v1.27:tasks/run-application/run-replicated-stateful-application#c7",
+        "v1.31:tasks/run-application/run-replicated-stateful-application#c7",
+        "v1.27:tasks/run-application/run-replicated-stateful-application#c8",
+        "v1.31:tasks/run-application/run-replicated-stateful-application#c8",
+        "v1.31:concepts/workloads/controllers/statefulset#c8",
+        "v1.27:concepts/workloads/controllers/statefulset#c0",
+        "v1.31:concepts/workloads/controllers/statefulset#c0",
+        "v1.27:concepts/workloads/controllers/statefulset#c8"
+      ],
+      "latency_ms": 29928,
+      "retrieval_ms": 81,
+      "llm_ms": 29840,
+      "is_correct": false,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": true,
+      "failed_condition": "Missing must_include terms: ['beta', 'stable']",
+      "why_wrong": "Missing must_include terms: ['beta', 'stable']"
+    },
+    {
+      "qid": "Q-009",
+      "type": "version_conflict",
+      "question": "What is the feature state of the UnhealthyPodEvictionPolicy for PodDisruptionBudgets?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "In Kubernetes 1.27, the feature state is FEATURE STATE: Kubernetes v1.27 [beta] [v1.27:tasks/run-application/configure-pdb#c10]. In Kubernetes 1.31, the feature state is FEATURE STATE: Kubernetes v1.31 [alpha] [v1.31:concepts/extend-kubernetes/compute-storage-net/device-plugins#c5].",
+      "citations": [
+        {
+          "doc_id": "tasks/run-application/configure-pdb",
+          "chunk_id": "v1.27:tasks/run-application/configure-pdb#c10",
+          "version": "1.27",
+          "quote": "FEATURE STATE: Kubernetes v1.27 [beta] Note: This feature is enabled by default."
+        },
+        {
+          "doc_id": "concepts/extend-kubernetes/compute-storage-net/device-plugins",
+          "chunk_id": "v1.31:concepts/extend-kubernetes/compute-storage-net/device-plugins#c5",
+          "version": "1.31",
+          "quote": "FEATURE STATE: Kubernetes v1.31 [alpha] By enabling the feature gate ResourceHealthStatus, the field allocatedResourcesStatus will be added to each container status, within the .status for each Pod."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.31:tasks/run-application/configure-pdb#c10",
+        "v1.27:tasks/run-application/configure-pdb#c10",
+        "v1.31:concepts/extend-kubernetes/compute-storage-net/device-plugins#c5",
+        "v1.27:tasks/administer-cluster/safely-drain-node#c2",
+        "v1.31:tasks/administer-cluster/safely-drain-node#c2",
+        "v1.27:tasks/run-application/configure-pdb#c6",
+        "v1.31:tasks/run-application/configure-pdb#c6",
+        "v1.27:concepts/workloads/pods/disruptions#c5",
+        "v1.27:concepts/workloads/controllers/job#c11",
+        "v1.31:concepts/workloads/pods/disruptions#c3"
+      ],
+      "latency_ms": 24646,
+      "retrieval_ms": 1391,
+      "llm_ms": 23162,
+      "is_correct": false,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": true,
+      "failed_condition": "Missing must_include terms: ['stable']",
+      "why_wrong": "Missing must_include terms: ['stable']"
+    },
+    {
+      "qid": "Q-010",
+      "type": "version_conflict",
+      "question": "What is the feature state of Container resource metrics in HorizontalPodAutoscaler?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "In Kubernetes 1.27, the HorizontalPodAutcaler API also supports a container metric source where the HPA can track the resource usage of individual containers across a set of Pods, in order to scale the target resource [v1.27:tasks/run-application/horizontal-pod-autoscale#c7]. This lets you configure scaling thresholds for the containers that matter most in a particular Pod [v1.27:tasks/run-application/horizontal-pod-autoscale#c7]. In Kubernetes 1.31, the HorizontalPodAutcaler API also supports a container metric source where the HPA can track the resource usage of individual containers across a set of Pods, in order to scale the target resource [v1.31:tasks/run-application/horizontal-pod-autoscale#c7].",
+      "citations": [
+        {
+          "doc_id": "tasks/run-application/horizontal-pod-autoscale",
+          "chunk_id": "v1.27:tasks/run-application/horizontal-pod-autoscale#c7",
+          "version": "1.27",
+          "quote": "FEATURE STATE: Kubernetes v1.27 [beta] The HorizontalPodAutoscaler API also supports a container metric source where the HPA can track the resource usage of individual containers across a set of Pods, in order to scale the target resource."
+        },
+        {
+          "doc_id": "tasks/run-application/horizontal-pod-autoscale",
+          "chunk_id": "v1.27:tasks/run-application/horizontal-pod-autoscale#c7",
+          "version": "1.27",
+          "quote": "This lets you configure scaling thresholds for the containers that matter most in a particular Pod."
+        },
+        {
+          "doc_id": "tasks/run-application/horizontal-pod-autoscale",
+          "chunk_id": "v1.31:tasks/run-application/horizontal-pod-autoscale#c7",
+          "version": "1.31",
+          "quote": "FEATURE STATE: Kubernetes v1.30 [stable] The HorizontalPodAutoscaler API also supports a container metric source where the HPA can track the resource usage of individual containers across a set of Pods, in order to scale the target resource."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:tasks/run-application/horizontal-pod-autoscale#c7",
+        "v1.31:tasks/run-application/horizontal-pod-autoscale#c7",
+        "v1.27:tasks/run-application/horizontal-pod-autoscale#c10",
+        "v1.31:tasks/run-application/horizontal-pod-autoscale#c10",
+        "v1.27:tasks/run-application/horizontal-pod-autoscale#c1",
+        "v1.31:tasks/run-application/horizontal-pod-autoscale#c1",
+        "v1.27:tasks/run-application/horizontal-pod-autoscale#c9",
+        "v1.31:tasks/run-application/horizontal-pod-autoscale#c9",
+        "v1.31:tasks/run-application/horizontal-pod-autoscale-walkthrough#c6",
+        "v1.27:tasks/run-application/horizontal-pod-autoscale-walkthrough#c0"
+      ],
+      "latency_ms": 31139,
+      "retrieval_ms": 173,
+      "llm_ms": 30935,
+      "is_correct": false,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": true,
+      "failed_condition": "Missing must_include terms: ['beta', 'stable']",
+      "why_wrong": "Missing must_include terms: ['beta', 'stable']"
+    },
+    {
+      "qid": "Q-011",
+      "type": "only_in_one_version",
+      "question": "What does the kubernetes.io/enforce-mountable-secrets annotation do on a ServiceAccount?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "The kubernetes.io/enforce-mountable-secrets annotation on a ServiceAccount enforces specific rules on how Secrets are used in a Pod, such as ensuring that the names of Secrets that are mounted as volumes, referenced using envFrom, or used with imagePullSecrets in a Pod must appear in the secrets field of the Pod's ServiceAccount [v1.31:concepts/security/service-accounts#c9].",
+      "citations": [
+        {
+          "doc_id": "concepts/security/service-accounts",
+          "chunk_id": "v1.31:concepts/security/service-accounts#c9",
+          "version": "1.31",
+          "quote": "The name of each Secret referenced using envFrom in a Pod must also appear in the secrets field of the Pod's ServiceAccount."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.31:concepts/security/service-accounts#c9",
+        "v1.31:concepts/security/secrets-good-practices#c4",
+        "v1.31:concepts/configuration/secret#c29",
+        "v1.31:concepts/security/hardening-guide/authentication-mechanisms#c4",
+        "v1.31:concepts/configuration/secret#c7",
+        "v1.27:concepts/security/service-accounts#c9",
+        "v1.27:concepts/security/security-checklist#c9",
+        "v1.27:concepts/security/service-accounts#c10",
+        "v1.27:tasks/configure-pod-container/configure-service-account#c11",
+        "v1.27:tasks/configure-pod-container/configure-service-account#c13"
+      ],
+      "latency_ms": 20390,
+      "retrieval_ms": 122,
+      "llm_ms": 20256,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-012",
+      "type": "only_in_one_version",
+      "question": "How do I define a sidecar container in a Pod?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "In Kubernetes, a sidecar container is defined as a container that starts before the main application container and continues to run [v1.31:concepts/workloads/pods/init-containers#c0]. This can be specified in the Pod's initContainers field, where you can define the sidecar container's image, command, and volume mounts [v1.27:tasks/inject-data-application/downward-api-volume-expose-pod-information#c2]. Additionally, you can specify a restartPolicy for the sidecar container, which is independent from other init containers and main application containers within the same pod [v1.31:concepts/workloads/pods/sidecar-containers#c1].",
+      "citations": [
+        {
+          "doc_id": "concepts/workloads/pods/init-containers",
+          "chunk_id": "v1.31:concepts/workloads/pods/init-containers#c0",
+          "version": "1.31",
+          "quote": "In Kubernetes, a sidecar container is a container that starts before the main application container and continues to run."
+        },
+        {
+          "doc_id": "tasks/inject-data-application/downward-api-volume-expose-pod-information",
+          "chunk_id": "v1.27:tasks/inject-data-application/downward-api-volume-expose-pod-information#c2",
+          "version": "1.27",
+          "quote": "In the manifest, you can see that the Pod has a downwardAPI Volume, and the container mounts the volume at /etc/podinfo."
+        },
+        {
+          "doc_id": "concepts/workloads/pods/sidecar-containers",
+          "chunk_id": "v1.31:concepts/workloads/pods/sidecar-containers#c1",
+          "version": "1.31",
+          "quote": "These restartable sidecar containers are independent from other init containers and from the main application container(s) within the same pod."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.31:concepts/workloads/pods/sidecar-containers#c0",
+        "v1.31:concepts/workloads/pods/sidecar-containers#c1",
+        "v1.31:concepts/workloads/pods/sidecar-containers#c2",
+        "v1.31:concepts/workloads/pods/init-containers#c0",
+        "v1.31:concepts/workloads/pods/_index#c14",
+        "v1.27:tasks/inject-data-application/downward-api-volume-expose-pod-information#c2",
+        "v1.27:tasks/configure-pod-container/share-process-namespace#c0",
+        "v1.27:concepts/workloads/pods/_index#c0",
+        "v1.27:tasks/inject-data-application/downward-api-volume-expose-pod-information#c3",
+        "v1.27:concepts/cluster-administration/logging#c9"
+      ],
+      "latency_ms": 22786,
+      "retrieval_ms": 100,
+      "llm_ms": 22669,
+      "is_correct": false,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": "Missing must_include terms: ['Always']",
+      "why_wrong": "Missing must_include terms: ['Always']"
+    },
+    {
+      "qid": "Q-013",
+      "type": "only_in_one_version",
+      "question": "What is a VolumeAttributesClass?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "A VolumeAttributesClass is a way for administrators to describe mutable \"classes\" of storage they offer, allowing for different quality-of-service levels [v1.31:concepts/storage/volume-attributes-classes#c0]. For Kubernetes 1.27, it is a beta feature and disabled by default, while for Kubernetes 1.31, it is a feature that can be enabled and used with the appropriate API group and feature gate [v1.31:concepts/storage/volume-attributes-classes#c0].",
+      "citations": [
+        {
+          "doc_id": "concepts/storage/volume-attributes-classes",
+          "chunk_id": "v1.31:concepts/storage/volume-attributes-classes#c0",
+          "version": "1.31",
+          "quote": "A VolumeAttributesClass provides a way for administrators to describe the mutable \"classes\" of storage they offer."
+        },
+        {
+          "doc_id": "concepts/storage/volume-attributes-classes",
+          "chunk_id": "v1.31:concepts/storage/volume-attributes-classes#c0",
+          "version": "1.31",
+          "quote": "This is a beta feature and disabled by default."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.31:concepts/storage/volume-attributes-classes#c1",
+        "v1.31:concepts/storage/volume-attributes-classes#c0",
+        "v1.31:concepts/storage/volume-attributes-classes#c3",
+        "v1.31:concepts/storage/volume-attributes-classes#c4",
+        "v1.31:concepts/storage/volume-attributes-classes#c2",
+        "v1.27:concepts/storage/dynamic-provisioning#c1",
+        "v1.27:concepts/storage/volume-snapshot-classes#c5",
+        "v1.27:concepts/storage/volumes#c46",
+        "v1.27:concepts/storage/volume-snapshot-classes#c1",
+        "v1.27:concepts/storage/volume-snapshot-classes#c2"
+      ],
+      "latency_ms": 40533,
+      "retrieval_ms": 89,
+      "llm_ms": 40427,
+      "is_correct": false,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": "Missing must_include terms: ['PersistentVolumes']",
+      "why_wrong": "Missing must_include terms: ['PersistentVolumes']"
+    },
+    {
+      "qid": "Q-014",
+      "type": "only_in_one_version",
+      "question": "How do I use an image volume in a Pod?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "In Kubernetes 1.27, to use an image volume in a Pod, you can set the volumes..image field of the Pod's spec to a valid reference and consume it in the volumeMounts of the container [v1.27:tasks/configure-pod-container/configure-projected-volume-storage#c2]. In Kubernetes 1.31, the process is similar: set the volumes..image field of the Pod's spec to a valid reference and consume it in the volumeMounts of the container [v1.31:tasks/configure-pod-container/image-volumes#c2].",
+      "citations": [
+        {
+          "doc_id": "tasks/configure-pod-container/configure-projected-volume-storage",
+          "chunk_id": "v1.27:tasks/configure-pod-container/configure-projected-volume-storage#c2",
+          "version": "1.27",
+          "quote": "1. Verify that the Pod's container is running, and then watch for changes to the Pod:"
+        },
+        {
+          "doc_id": "tasks/configure-pod-container/image-volumes",
+          "chunk_id": "v1.31:tasks/configure-pod-container/image-volumes#c2",
+          "version": "1.31",
+          "quote": "An image volume for a pod is enabled by setting the volumes.[*].image field of .spec to a valid reference and consuming it in the volumeMounts of the container."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.31:tasks/configure-pod-container/image-volumes#c2",
+        "v1.31:tasks/configure-pod-container/image-volumes#c0",
+        "v1.27:tasks/configure-pod-container/configure-projected-volume-storage#c2",
+        "v1.31:tasks/configure-pod-container/configure-projected-volume-storage#c2",
+        "v1.27:tasks/configure-pod-container/configure-volume-storage#c2",
+        "v1.31:tasks/configure-pod-container/configure-volume-storage#c2",
+        "v1.27:concepts/configuration/configmap#c5",
+        "v1.31:concepts/configuration/configmap#c5",
+        "v1.27:tasks/configure-pod-container/configure-pod-configmap#c18",
+        "v1.27:tasks/configure-pod-container/configure-projected-volume-storage#c0"
+      ],
+      "latency_ms": 33109,
+      "retrieval_ms": 777,
+      "llm_ms": 32309,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-015",
+      "type": "only_in_one_version",
+      "question": "What is the mixed version proxy?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "In Kubernetes 1.31, Mixed Version Proxy is an alpha feature that lets an API Server proxy resource requests to other peer API servers [v1.31:concepts/architecture/mixed-version-proxy#c0]. This is useful when there are multiple API servers running different versions of Kubernetes in one cluster, enabling cluster administrators to configure highly available clusters that can be upgraded more safely by directing resource requests to the correct kube-apiserver, preventing users from seeing unexpected 404 Not Found errors that stem from the upgrade process [v1.31:concepts/architecture/mixed-version-proxy#c0]. In Kubernetes 1.27, kube-proxy must not be newer than kube-apiserver, and may be up to two minor versions older [v1.27:releases/version-skew-policy#c4].",
+      "citations": [
+        {
+          "doc_id": "concepts/architecture/mixed-version-proxy",
+          "chunk_id": "v1.31:concepts/architecture/mixed-version-proxy#c0",
+          "version": "1.31",
+          "quote": "FEATURE STATE: Kubernetes v1.28 [alpha] Kubernetes 1.31 includes an alpha feature that lets an API Server proxy a resource requests to other peer API servers."
+        },
+        {
+          "doc_id": "concepts/architecture/mixed-version-proxy",
+          "chunk_id": "v1.31:concepts/architecture/mixed-version-proxy#c0",
+          "version": "1.31",
+          "quote": "This enables cluster administrators to configure highly available clusters that can be upgraded more safely, by directing resource requests (made during the upgrade) to the correct kube-apiserver."
+        },
+        {
+          "doc_id": "releases/version-skew-policy",
+          "chunk_id": "v1.27:releases/version-skew-policy#c4",
+          "version": "1.27",
+          "quote": "kube-proxy must not be newer than kube-apiserver, and may be up to two minor versions older."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.31:concepts/architecture/mixed-version-proxy#c4",
+        "v1.31:concepts/architecture/mixed-version-proxy#c0",
+        "v1.31:concepts/architecture/mixed-version-proxy#c5",
+        "v1.31:concepts/architecture/mixed-version-proxy#c1",
+        "v1.31:concepts/architecture/mixed-version-proxy#c2",
+        "v1.27:releases/version-skew-policy#c4",
+        "v1.27:tasks/extend-kubernetes/http-proxy-access-api#c3",
+        "v1.27:releases/version-skew-policy#c11",
+        "v1.27:concepts/cluster-administration/proxies#c2",
+        "v1.27:tasks/administer-cluster/kubeadm/upgrading-windows-nodes#c5"
+      ],
+      "latency_ms": 25456,
+      "retrieval_ms": 150,
+      "llm_ms": 25278,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-016",
+      "type": "unanswerable",
+      "question": "What is the per-cluster licence cost of Kubernetes?",
+      "refused": true,
+      "refusal_reason": "model_unsupported",
+      "answer": "The Kubernetes 1.27 or 1.31 documentation covered by this corpus does not provide sufficient documented information to answer this question.",
+      "citations": [],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/services-networking/cluster-ip-allocation#c0",
+        "v1.31:concepts/services-networking/cluster-ip-allocation#c0",
+        "v1.27:concepts/services-networking/cluster-ip-allocation#c2",
+        "v1.31:concepts/services-networking/cluster-ip-allocation#c2",
+        "v1.27:concepts/services-networking/_index#c0",
+        "v1.31:concepts/cluster-administration/networking#c0",
+        "v1.27:concepts/cluster-administration/networking#c0",
+        "v1.27:tasks/access-application-cluster/access-cluster#c5",
+        "v1.31:tasks/access-application-cluster/access-cluster#c5",
+        "v1.31:concepts/services-networking/cluster-ip-allocation#c1"
+      ],
+      "latency_ms": 18955,
+      "retrieval_ms": 871,
+      "llm_ms": 18040,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-017",
+      "type": "unanswerable",
+      "question": "What is the maximum number of custom scheduler profiles allowed in a KubeSchedulerConfiguration?",
+      "refused": true,
+      "refusal_reason": "model_nonanswer",
+      "answer": "For Kubernetes 1.31, the relevant chunk states that you can add your scheduler name to the resourceNames of the rule applied for endpoints and leases resources, indicating that the limit is not explicitly stated but can be as many as needed .",
+      "citations": [],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/scheduling-eviction/dynamic-resource-allocation#c5",
+        "v1.27:tasks/extend-kubernetes/configure-multiple-schedulers#c5",
+        "v1.31:tasks/extend-kubernetes/configure-multiple-schedulers#c5",
+        "v1.31:concepts/scheduling-eviction/scheduling-framework#c20",
+        "v1.27:tasks/extend-kubernetes/configure-multiple-schedulers#c3",
+        "v1.31:tasks/extend-kubernetes/configure-multiple-schedulers#c3",
+        "v1.27:concepts/scheduling-eviction/scheduling-framework#c18",
+        "v1.27:concepts/cluster-administration/flow-control#c9",
+        "v1.31:concepts/cluster-administration/flow-control#c10",
+        "v1.31:concepts/scheduling-eviction/assign-pod-node#c7"
+      ],
+      "latency_ms": 39448,
+      "retrieval_ms": 183,
+      "llm_ms": 39215,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-018",
+      "type": "unanswerable",
+      "question": "What is the default maximum number of Services allowed per namespace?",
+      "refused": true,
+      "refusal_reason": "model_nonanswer",
+      "answer": "The documentation does not specify a default maximum number of Services allowed per namespace.",
+      "citations": [],
+      "retrieved_chunk_ids": [
+        "v1.27:tasks/configure-pod-container/quality-service-pod#c13",
+        "v1.31:tasks/configure-pod-container/quality-service-pod#c13",
+        "v1.27:concepts/security/multi-tenancy#c21",
+        "v1.31:concepts/security/multi-tenancy#c21",
+        "v1.27:tasks/administer-cluster/manage-resources/cpu-default-namespace#c6",
+        "v1.31:tasks/administer-cluster/manage-resources/cpu-default-namespace#c6",
+        "v1.27:tasks/administer-cluster/manage-resources/cpu-default-namespace#c0",
+        "v1.31:tasks/administer-cluster/manage-resources/cpu-default-namespace#c0",
+        "v1.27:tasks/administer-cluster/manage-resources/cpu-constraint-namespace#c0",
+        "v1.31:tasks/administer-cluster/manage-resources/cpu-constraint-namespace#c0"
+      ],
+      "latency_ms": 28928,
+      "retrieval_ms": 232,
+      "llm_ms": 28665,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-019",
+      "type": "unanswerable",
+      "question": "Which kubectl command shows the monetary cost of a namespace?",
+      "refused": true,
+      "refusal_reason": "model_unsupported",
+      "answer": "The Kubernetes 1.27 or 1.31 documentation covered by this corpus does not provide sufficient documented information to answer this question.",
+      "citations": [],
+      "retrieved_chunk_ids": [
+        "v1.27:tasks/administer-cluster/manage-resources/quota-memory-cpu-namespace#c4",
+        "v1.31:tasks/administer-cluster/manage-resources/quota-memory-cpu-namespace#c4",
+        "v1.31:concepts/workloads/management#c6",
+        "v1.27:tasks/administer-cluster/manage-resources/quota-memory-cpu-namespace#c7",
+        "v1.31:tasks/administer-cluster/manage-resources/quota-memory-cpu-namespace#c7",
+        "v1.27:tasks/administer-cluster/manage-resources/quota-pod-namespace#c2",
+        "v1.27:tasks/administer-cluster/manage-resources/quota-memory-cpu-namespace#c2",
+        "v1.31:tasks/administer-cluster/manage-resources/quota-pod-namespace#c2",
+        "v1.31:tasks/administer-cluster/manage-resources/quota-memory-cpu-namespace#c2",
+        "v1.27:tasks/administer-cluster/manage-resources/quota-pod-namespace#c5"
+      ],
+      "latency_ms": 30021,
+      "retrieval_ms": 124,
+      "llm_ms": 16765,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-020",
+      "type": "unanswerable",
+      "question": "How much memory does kube-apiserver need per 1000 nodes?",
+      "refused": true,
+      "refusal_reason": "model_nonanswer",
+      "answer": "The kube-apiserver does not specify a fixed memory requirement per node, only that memory and CPU resources should be reserved with --kube-reserved and --system-reserved flags to account for the operating system, container runtime, and Kubernetes host processes .",
+      "citations": [],
+      "retrieved_chunk_ids": [
+        "v1.27:tasks/administer-cluster/reserve-compute-resources#c11",
+        "v1.27:concepts/configuration/windows-resource-management#c3",
+        "v1.31:concepts/configuration/windows-resource-management#c3",
+        "v1.31:tasks/configure-pod-container/assign-memory-resource#c1",
+        "v1.27:tasks/configure-pod-container/assign-memory-resource#c1",
+        "v1.31:tasks/administer-cluster/node-overprovisioning#c7",
+        "v1.31:tasks/administer-cluster/node-overprovisioning#c3",
+        "v1.31:tasks/manage-hugepages/scheduling-hugepages#c1",
+        "v1.27:tasks/administer-cluster/nodelocaldns#c7",
+        "v1.27:concepts/cluster-administration/system-traces#c3"
+      ],
+      "latency_ms": 38778,
+      "retrieval_ms": 174,
+      "llm_ms": 38561,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-021",
+      "type": "unanswerable",
+      "question": "Which cloud provider does Kubernetes recommend for production clusters?",
+      "refused": true,
+      "refusal_reason": "irrelevant_evidence",
+      "answer": "The Kubernetes 1.27 or 1.31 documentation covered by this corpus does not provide relevant evidence for the question: provider, recommend, product.",
+      "citations": [],
+      "retrieved_chunk_ids": [
+        "v1.31:concepts/cluster-administration/cluster-autoscaling#c5",
+        "v1.27:concepts/cluster-administration/_index#c1",
+        "v1.31:concepts/cluster-administration/_index#c1",
+        "v1.27:tasks/access-application-cluster/access-cluster#c5",
+        "v1.31:tasks/access-application-cluster/access-cluster#c5",
+        "v1.31:concepts/overview/_index#c1",
+        "v1.31:concepts/security/_index#c6",
+        "v1.27:concepts/overview/_index#c2",
+        "v1.27:concepts/overview/_index#c0",
+        "v1.27:concepts/security/overview#c2"
+      ],
+      "latency_ms": 36834,
+      "retrieval_ms": 153,
+      "llm_ms": 36658,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-022",
+      "type": "unanswerable",
+      "question": "What is the maximum size of a ConfigMap when the etcd quota has been raised?",
+      "refused": true,
+      "refusal_reason": "model_unsupported",
+      "answer": "The Kubernetes 1.27 or 1.31 documentation covered by this corpus does not provide sufficient documented information to answer this question.",
+      "citations": [],
+      "retrieved_chunk_ids": [
+        "v1.31:concepts/policy/resource-quotas#c3",
+        "v1.27:concepts/policy/resource-quotas#c3",
+        "v1.27:tasks/administer-cluster/manage-resources/cpu-constraint-namespace#c8",
+        "v1.31:tasks/administer-cluster/manage-resources/cpu-constraint-namespace#c8",
+        "v1.27:tasks/administer-cluster/quota-api-object#c8",
+        "v1.31:tasks/administer-cluster/quota-api-object#c8",
+        "v1.27:concepts/configuration/configmap#c1",
+        "v1.27:concepts/cluster-administration/flow-control#c19",
+        "v1.31:concepts/policy/resource-quotas#c4",
+        "v1.31:concepts/cluster-administration/flow-control#c21"
+      ],
+      "latency_ms": 15709,
+      "retrieval_ms": 217,
+      "llm_ms": 15470,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-023",
+      "type": "unanswerable",
+      "question": "What is the default value of the kube-apiserver --max-requests-inflight flag?",
+      "refused": true,
+      "refusal_reason": "model_unsupported",
+      "answer": "The Kubernetes 1.27 or 1.31 documentation covered by this corpus does not provide sufficient documented information to answer this question.",
+      "citations": [],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/cluster-administration/flow-control#c0",
+        "v1.31:concepts/cluster-administration/flow-control#c0",
+        "v1.27:concepts/cluster-administration/flow-control#c17",
+        "v1.31:concepts/cluster-administration/flow-control#c4",
+        "v1.27:concepts/cluster-administration/flow-control#c3",
+        "v1.27:concepts/cluster-administration/flow-control#c21",
+        "v1.27:tasks/administer-cluster/manage-resources/cpu-constraint-namespace#c3",
+        "v1.31:tasks/administer-cluster/manage-resources/cpu-constraint-namespace#c3",
+        "v1.31:releases/version-skew-policy#c8",
+        "v1.31:tasks/manage-kubernetes-objects/declarative-config#c19"
+      ],
+      "latency_ms": 48603,
+      "retrieval_ms": 138,
+      "llm_ms": 48426,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-024",
+      "type": "unanswerable",
+      "question": "Does enforce-mountable-secrets also restrict Secrets used in projected volumes?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "The annotation kubernetes.io/enforce-mountable-secrets: \"true\" restricts Secrets used in projected volumes for Kubernetes 1.31 [v1.31:concepts/configuration/secret#c29].",
+      "citations": [
+        {
+          "doc_id": "concepts/configuration/secret",
+          "chunk_id": "v1.31:concepts/configuration/secret#c29",
+          "version": "1.31",
+          "quote": "To enhance the security measures around Secrets, Kubernetes provides a mechanism: you can annotate a ServiceAccount as kubernetes.io/enforce-mountable-secrets: \"true\"."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/storage/projected-volumes#c5",
+        "v1.31:concepts/storage/projected-volumes#c6",
+        "v1.31:concepts/configuration/secret#c29",
+        "v1.31:concepts/storage/projected-volumes#c3",
+        "v1.27:concepts/storage/projected-volumes#c3",
+        "v1.31:concepts/storage/volumes#c34",
+        "v1.27:tasks/inject-data-application/distribute-credentials-secure#c6",
+        "v1.31:tasks/inject-data-application/distribute-credentials-secure#c6",
+        "v1.27:concepts/configuration/secret#c17",
+        "v1.27:concepts/storage/volumes#c37"
+      ],
+      "latency_ms": 30261,
+      "retrieval_ms": 834,
+      "llm_ms": 29389,
+      "is_correct": false,
+      "answered_and_verified": false,
+      "version_conflict_grader_pass": null,
+      "failed_condition": "Unanswerable answered or invalid refusal reason: None",
+      "why_wrong": "Unanswerable answered or invalid refusal reason: None"
+    },
+    {
+      "qid": "Q-025",
+      "type": "unanswerable",
+      "question": "Which Linux distribution does Kubernetes recommend for control plane nodes?",
+      "refused": true,
+      "refusal_reason": "model_nonanswer",
+      "answer": "Kubernetes does not recommend a specific Linux distribution for control plane nodes .",
+      "citations": [],
+      "retrieved_chunk_ids": [
+        "v1.31:concepts/architecture/_index#c18",
+        "v1.31:tasks/administer-cluster/topology-manager#c1",
+        "v1.27:tasks/administer-cluster/topology-manager#c1",
+        "v1.27:tasks/administer-cluster/kubeadm/upgrading-linux-nodes#c1",
+        "v1.27:concepts/architecture/control-plane-node-communication#c7",
+        "v1.31:concepts/architecture/control-plane-node-communication#c7",
+        "v1.27:tasks/administer-cluster/cpu-management-policies#c1",
+        "v1.31:tasks/administer-cluster/cpu-management-policies#c1",
+        "v1.27:concepts/security/multi-tenancy#c23",
+        "v1.31:concepts/security/multi-tenancy#c24"
+      ],
+      "latency_ms": 33956,
+      "retrieval_ms": 211,
+      "llm_ms": 33699,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-026",
+      "type": "false_premise",
+      "question": "How do I set the kubernetes.io/enforce-mountable-configmaps annotation?",
+      "refused": true,
+      "refusal_reason": "false_premise",
+      "answer": "The term 'kubernetes.io/enforce-mountable-configmaps' is not documented in the Kubernetes 1.27 or 1.31 documentation covered by this corpus.",
+      "citations": [],
+      "retrieved_chunk_ids": [],
+      "latency_ms": 386,
+      "retrieval_ms": 0,
+      "llm_ms": 0,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-027",
+      "type": "false_premise",
+      "question": "What does kubectl get pods --sort-by-age do?",
+      "refused": true,
+      "refusal_reason": "false_premise",
+      "answer": "The term '--sort-by-age' is not documented in the Kubernetes 1.27 or 1.31 documentation covered by this corpus.",
+      "citations": [],
+      "retrieved_chunk_ids": [],
+      "latency_ms": 50,
+      "retrieval_ms": 0,
+      "llm_ms": 0,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-028",
+      "type": "false_premise",
+      "question": "How do I set the spec.restartDelaySeconds field on a Pod?",
+      "refused": true,
+      "refusal_reason": "model_unsupported",
+      "answer": "The Kubernetes 1.27 or 1.31 documentation covered by this corpus does not provide sufficient documented information to answer this question.",
+      "citations": [],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/workloads/pods/pod-lifecycle#c7",
+        "v1.31:concepts/workloads/pods/pod-lifecycle#c9",
+        "v1.31:concepts/workloads/pods/pod-lifecycle#c10",
+        "v1.31:concepts/workloads/pods/pod-lifecycle#c4",
+        "v1.27:concepts/workloads/controllers/replicationcontroller#c4",
+        "v1.31:concepts/workloads/controllers/replicationcontroller#c4",
+        "v1.31:concepts/workloads/controllers/job#c9",
+        "v1.27:concepts/workloads/controllers/job#c9",
+        "v1.27:concepts/workloads/controllers/job#c10",
+        "v1.27:concepts/workloads/pods/init-containers#c8"
+      ],
+      "latency_ms": 21965,
+      "retrieval_ms": 1084,
+      "llm_ms": 20793,
+      "is_correct": false,
+      "answered_and_verified": false,
+      "version_conflict_grader_pass": null,
+      "failed_condition": "False premise answered or wrong refusal reason: model_unsupported",
+      "why_wrong": "False premise answered or wrong refusal reason: model_unsupported"
+    },
+    {
+      "qid": "Q-029",
+      "type": "false_premise",
+      "question": "What does the --enable-pod-priority-classes flag do?",
+      "refused": true,
+      "refusal_reason": "false_premise",
+      "answer": "The term '--enable-pod-priority-classes' is not documented in the Kubernetes 1.27 or 1.31 documentation covered by this corpus.",
+      "citations": [],
+      "retrieved_chunk_ids": [],
+      "latency_ms": 107,
+      "retrieval_ms": 0,
+      "llm_ms": 0,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-030",
+      "type": "same_in_both",
+      "question": "What is a Pod?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "In Kubernetes, a Pod is the smallest deployable unit of computing that you can create and manage [v1.31:concepts/workloads/pods/_index#c0]. A Pod is a group of one or more containers, with shared storage and network resources, and a specification for how to run the containers [v1.31:concepts/workloads/pods/_index#c0]. A Pod's contents are always co-located and co-scheduled, and run in a shared context [v1.31:concepts/workloads/pods/_index#c0]. A Pod models an application-specific 'logical host': it contains one or more application containers which are relatively tightly coupled [v1.31:concepts/workloads/pods/_index#c0]. In non-cloud contexts, applications executed on the same physical or virtual machine are analogous to cloud applications executed on the same logical host [v1.31:concepts/workloads/pods/_index#c0]. As well as application containers, a Pod can contain init containers that run during Pod startup [v1.31:concepts/workloads/pods/_index#c0]. You can also inject ephemeral containers for debugging if your cluster offers this [v1.27:concepts/workloads/pods/_index#c0]. In Kubernetes 1.27, and in Kubernetes 1.31, [v1.31:concepts/workloads/pods/_index#c0].",
+      "citations": [
+        {
+          "doc_id": "concepts/workloads/pods/_index",
+          "chunk_id": "v1.31:concepts/workloads/pods/_index#c0",
+          "version": "1.31",
+          "quote": "Pods are the smallest deployable units of computing that you can create and manage in Kubernetes."
+        },
+        {
+          "doc_id": "concepts/workloads/pods/_index",
+          "chunk_id": "v1.31:concepts/workloads/pods/_index#c0",
+          "version": "1.31",
+          "quote": "A Pod (as in a pod of whales or pea pod) is a group of one or more containers, with shared storage and network resources, and a specification for how to run the containers."
+        },
+        {
+          "doc_id": "concepts/workloads/pods/_index",
+          "chunk_id": "v1.31:concepts/workloads/pods/_index#c0",
+          "version": "1.31",
+          "quote": "A Pod's contents are always co-located and co-scheduled, and run in a shared context."
+        },
+        {
+          "doc_id": "concepts/workloads/pods/_index",
+          "chunk_id": "v1.31:concepts/workloads/pods/_index#c0",
+          "version": "1.31",
+          "quote": "A Pod models an application-specific \"logical host\": it contains one or more application containers which are relatively tightly coupled."
+        },
+        {
+          "doc_id": "concepts/workloads/pods/_index",
+          "chunk_id": "v1.31:concepts/workloads/pods/_index#c0",
+          "version": "1.31",
+          "quote": "In non-cloud contexts, applications executed on the same physical or virtual machine are analogous to cloud applications executed on the same logical host."
+        },
+        {
+          "doc_id": "concepts/workloads/pods/_index",
+          "chunk_id": "v1.31:concepts/workloads/pods/_index#c0",
+          "version": "1.31",
+          "quote": "As well as application containers, a Pod can contain init containers that run during Pod startup."
+        },
+        {
+          "doc_id": "concepts/workloads/pods/_index",
+          "chunk_id": "v1.27:concepts/workloads/pods/_index#c0",
+          "version": "1.27",
+          "quote": "You can also inject ephemeral containers for debugging if your cluster offers this."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.31:concepts/workloads/pods/_index#c0",
+        "v1.27:concepts/workloads/pods/_index#c0",
+        "v1.27:concepts/workloads/pods/_index#c1",
+        "v1.31:concepts/workloads/pods/_index#c1",
+        "v1.27:concepts/workloads/pods/_index#c18",
+        "v1.31:concepts/workloads/pods/_index#c16",
+        "v1.27:concepts/workloads/pods/_index#c4",
+        "v1.27:concepts/workloads/pods/ephemeral-containers#c1",
+        "v1.31:concepts/workloads/pods/ephemeral-containers#c1",
+        "v1.31:concepts/workloads/pods/_index#c14"
+      ],
+      "latency_ms": 30407,
+      "retrieval_ms": 932,
+      "llm_ms": 29427,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-031",
+      "type": "same_in_both",
+      "question": "What does kube-scheduler do?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "In Kubernetes 1.27, and In Kubernetes 1.31, kube-scheduler is a control plane component that watches for newly created Pods with no assigned node, and selects a node for them to run on [v1.27:concepts/scheduling-eviction/kube-scheduler#c2]. In both versions, kube-scheduler is designed so that, if needed, you can write your own scheduling component and use that instead [v1.27:concepts/scheduling-eviction/kube-scheduler#c2]. It filters out any nodes that don't meet a Pod's specific scheduling needs and finds feasible Nodes for a Pod [v1.27:concepts/scheduling-eviction/kube-scheduler#c2]. It then runs a set of functions to score the feasible Nodes and picks a Node with the highest score among the feasible ones to run the Pod [v1.27:concepts/scheduling-eviction/kube-scheduler#c2]. The scheduler then notifies the API server about this decision in a process called binding [v1.27:concepts/scheduling-eviction/kube-scheduler#c2].",
+      "citations": [
+        {
+          "doc_id": "concepts/scheduling-eviction/kube-scheduler",
+          "chunk_id": "v1.27:concepts/scheduling-eviction/kube-scheduler#c2",
+          "version": "1.27",
+          "quote": "Kube-scheduler selects an optimal node to run newly created or not yet scheduled (unscheduled) pods."
+        },
+        {
+          "doc_id": "concepts/scheduling-eviction/kube-scheduler",
+          "chunk_id": "v1.27:concepts/scheduling-eviction/kube-scheduler#c2",
+          "version": "1.27",
+          "quote": "kube-scheduler is designed so that, if you want and need to, you can write your own scheduling component and use that instead."
+        },
+        {
+          "doc_id": "concepts/scheduling-eviction/kube-scheduler",
+          "chunk_id": "v1.27:concepts/scheduling-eviction/kube-scheduler#c2",
+          "version": "1.27",
+          "quote": "Since containers in pods - and pods themselves - can have different requirements, the scheduler filters out any nodes that don't meet a Pod's specific scheduling needs."
+        },
+        {
+          "doc_id": "concepts/scheduling-eviction/kube-scheduler",
+          "chunk_id": "v1.27:concepts/scheduling-eviction/kube-scheduler#c2",
+          "version": "1.27",
+          "quote": "The scheduler finds feasible Nodes for a Pod and then runs a set of functions to score the feasible Nodes and picks a Node with the highest score among the feasible ones to run the Pod."
+        },
+        {
+          "doc_id": "concepts/scheduling-eviction/kube-scheduler",
+          "chunk_id": "v1.27:concepts/scheduling-eviction/kube-scheduler#c2",
+          "version": "1.27",
+          "quote": "The scheduler then notifies the API server about this decision in a process called binding."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/scheduling-eviction/kube-scheduler#c2",
+        "v1.31:concepts/scheduling-eviction/kube-scheduler#c2",
+        "v1.27:concepts/extend-kubernetes/_index#c20",
+        "v1.31:concepts/extend-kubernetes/_index#c20",
+        "v1.27:concepts/overview/components#c4",
+        "v1.31:concepts/architecture/_index#c4",
+        "v1.27:concepts/scheduling-eviction/scheduler-perf-tuning#c0",
+        "v1.31:concepts/scheduling-eviction/scheduler-perf-tuning#c0",
+        "v1.27:concepts/scheduling-eviction/kube-scheduler#c0",
+        "v1.31:concepts/scheduling-eviction/kube-scheduler#c0"
+      ],
+      "latency_ms": 25938,
+      "retrieval_ms": 232,
+      "llm_ms": 25681,
+      "is_correct": false,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": "Missing must_include terms: ['matched']",
+      "why_wrong": "Missing must_include terms: ['matched']"
+    },
+    {
+      "qid": "Q-032",
+      "type": "same_in_both",
+      "question": "How does a Deployment perform a rolling update?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "In Kubernetes 1.27 and 1.31, a Deployment performs a rolling update by updating Pods in a rolling update fashion when the.spec.strategy.type is set to RollingUpdate [v1.27:concepts/workloads/controllers/deployment#c7]. The Deployment updates Pods in a rolling update fashion when the.spec.template is changed, such as by updating the labels or container images of the template [v1.27:concepts/workloads/controllers/deployment#c7]. Other updates, such as scaling the Deployment, do not trigger a rollout and do not create a Deployment revision, allowing for simultaneous manual- or auto-scaling [v1.27:concepts/workloads/controllers/deployment#c7]. When a Deployment's rollout is triggered, a new revision is created if the Deployment's Pod template is changed [v1.27:concepts/workloads/controllers/deployment#c7].",
+      "citations": [
+        {
+          "doc_id": "concepts/workloads/controllers/deployment",
+          "chunk_id": "v1.27:concepts/workloads/controllers/deployment#c7",
+          "version": "1.27",
+          "quote": "Sometimes, you may want to rollback a Deployment; for example, when the Deployment is not stable, such as crash looping."
+        },
+        {
+          "doc_id": "concepts/workloads/controllers/deployment",
+          "chunk_id": "v1.27:concepts/workloads/controllers/deployment#c7",
+          "version": "1.27",
+          "quote": "This means that the new revision is created if and only if the Deployment's Pod template (.spec.template) is changed, for example if you update the labels or container images of the template."
+        },
+        {
+          "doc_id": "concepts/workloads/controllers/deployment",
+          "chunk_id": "v1.27:concepts/workloads/controllers/deployment#c7",
+          "version": "1.27",
+          "quote": "Other updates, such as scaling the Deployment, do not create a Deployment revision, so that you can facilitate simultaneous manual- or auto-scaling."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/workloads/controllers/deployment#c26",
+        "v1.31:concepts/workloads/controllers/deployment#c26",
+        "v1.27:concepts/workloads/controllers/deployment#c7",
+        "v1.31:concepts/workloads/controllers/deployment#c7",
+        "v1.27:concepts/workloads/controllers/deployment#c4",
+        "v1.31:concepts/workloads/controllers/deployment#c4",
+        "v1.31:concepts/workloads/management#c9",
+        "v1.31:concepts/workloads/management#c8",
+        "v1.27:concepts/workloads/controllers/deployment#c9",
+        "v1.27:concepts/workloads/controllers/deployment#c5"
+      ],
+      "latency_ms": 29510,
+      "retrieval_ms": 238,
+      "llm_ms": 29220,
+      "is_correct": false,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": "Missing must_include terms: ['declarative', 'ReplicaSets']",
+      "why_wrong": "Missing must_include terms: ['declarative', 'ReplicaSets']"
+    },
+    {
+      "qid": "Q-033",
+      "type": "same_in_both",
+      "question": "What does a Service of type ClusterIP do?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "A Service of type ClusterIP exposes an application running on a set of Pods within the cluster, using a cluster-scoped virtual IP address [v1.27:concepts/services-networking/cluster-ip-allocation#c0]. For Kubernetes 1.27, the virtual IP address is dynamically assigned from a configured IP range, and every Service ClusterIP must be unique [v1.27:concepts/services-networking/cluster-ip-allocation#c1].",
+      "citations": [
+        {
+          "doc_id": "concepts/services-networking/cluster-ip-allocation",
+          "chunk_id": "v1.27:concepts/services-networking/cluster-ip-allocation#c0",
+          "version": "1.27",
+          "quote": "Services can have a cluster-scoped virtual IP address (using a Service of type: ClusterIP)."
+        },
+        {
+          "doc_id": "concepts/services-networking/cluster-ip-allocation",
+          "chunk_id": "v1.27:concepts/services-networking/cluster-ip-allocation#c1",
+          "version": "1.27",
+          "quote": "When Kubernetes needs to assign a virtual IP address for a Service, that assignment happens one of two ways: dynamically : the cluster's control plane automatically picks a free IP address from within the configured IP range for type: ClusterIP Services."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/services-networking/cluster-ip-allocation#c0",
+        "v1.31:concepts/services-networking/cluster-ip-allocation#c0",
+        "v1.27:concepts/services-networking/cluster-ip-allocation#c1",
+        "v1.31:concepts/services-networking/cluster-ip-allocation#c1",
+        "v1.27:concepts/services-networking/cluster-ip-allocation#c3",
+        "v1.31:concepts/services-networking/cluster-ip-allocation#c3",
+        "v1.27:concepts/services-networking/service#c14",
+        "v1.31:concepts/services-networking/service#c14",
+        "v1.27:concepts/services-networking/cluster-ip-allocation#c7",
+        "v1.31:concepts/services-networking/cluster-ip-allocation#c7"
+      ],
+      "latency_ms": 30652,
+      "retrieval_ms": 206,
+      "llm_ms": 30428,
+      "is_correct": false,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": "Missing must_include terms: ['cluster-internal', 'default']",
+      "why_wrong": "Missing must_include terms: ['cluster-internal', 'default']"
+    },
+    {
+      "qid": "Q-034",
+      "type": "same_in_both",
+      "question": "What are Namespaces used for?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Namespaces are used for Kubernetes 1.27 and Kubernetes 1.31 to subdivide a cluster, providing a scope for names and a mechanism to attach authorization and policy to a subsection of the cluster [v1.27:tasks/administer-cluster/namespaces-walkthrough#c0]. They are intended for environments with many users spread across multiple teams or projects, and are optional for clusters with a few to tens of users [v1.27:concepts/overview/working-with-objects/namespaces#c1].",
+      "citations": [
+        {
+          "doc_id": "tasks/administer-cluster/namespaces-walkthrough",
+          "chunk_id": "v1.27:tasks/administer-cluster/namespaces-walkthrough#c0",
+          "version": "1.27",
+          "quote": "A mechanism to attach authorization and policy to a subsection of the cluster."
+        },
+        {
+          "doc_id": "concepts/overview/working-with-objects/namespaces",
+          "chunk_id": "v1.27:concepts/overview/working-with-objects/namespaces#c1",
+          "version": "1.27",
+          "quote": "Namespaces are intended for use in environments with many users spread across multiple teams, or projects."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/overview/working-with-objects/namespaces#c1",
+        "v1.31:concepts/overview/working-with-objects/namespaces#c1",
+        "v1.27:tasks/administer-cluster/namespaces-walkthrough#c0",
+        "v1.31:tasks/administer-cluster/namespaces-walkthrough#c0",
+        "v1.27:concepts/overview/working-with-objects/namespaces#c0",
+        "v1.31:concepts/overview/working-with-objects/namespaces#c0",
+        "v1.27:concepts/workloads/pods/user-namespaces#c6",
+        "v1.31:concepts/workloads/pods/user-namespaces#c7",
+        "v1.27:concepts/overview/working-with-objects/namespaces#c5",
+        "v1.31:concepts/overview/working-with-objects/namespaces#c5"
+      ],
+      "latency_ms": 36207,
+      "retrieval_ms": 170,
+      "llm_ms": 36013,
+      "is_correct": false,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": "Missing must_include terms: ['isolating', 'unique']",
+      "why_wrong": "Missing must_include terms: ['isolating', 'unique']"
+    },
+    {
+      "qid": "Q-035",
+      "type": "same_in_both",
+      "question": "How does a ReplicaSet differ from a Deployment?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "A Deployment is a higher-level concept that manages ReplicaSets and provides declarative updates to Pods along with other useful features, whereas a ReplicaSet ensures that a specified number of pod replicas are running at any given time [v1.27:concepts/workloads/controllers/replicaset#c2]. Deployment is recommended for use instead of directly using ReplicaSets, unless you require custom update orchestration or don't require updates at all [v1.27:concepts/workloads/controllers/replicaset#c2].",
+      "citations": [
+        {
+          "doc_id": "concepts/workloads/controllers/replicaset",
+          "chunk_id": "v1.27:concepts/workloads/controllers/replicaset#c2",
+          "version": "1.27",
+          "quote": "However, a Deployment is a higher-level concept that manages ReplicaSets and provides declarative updates to Pods along with a lot of other useful features."
+        },
+        {
+          "doc_id": "concepts/workloads/controllers/replicaset",
+          "chunk_id": "v1.27:concepts/workloads/controllers/replicaset#c2",
+          "version": "1.27",
+          "quote": "Therefore, we recommend using Deployments instead of directly using ReplicaSets, unless you require custom update orchestration or don't require updates at all."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/workloads/controllers/replicaset#c16",
+        "v1.31:concepts/workloads/controllers/replicaset#c16",
+        "v1.27:concepts/workloads/controllers/replicaset#c2",
+        "v1.31:concepts/workloads/controllers/replicaset#c2",
+        "v1.27:concepts/workloads/controllers/replicationcontroller#c19",
+        "v1.31:concepts/workloads/controllers/replicationcontroller#c19",
+        "v1.27:concepts/workloads/controllers/deployment#c5",
+        "v1.31:concepts/workloads/controllers/deployment#c5",
+        "v1.27:concepts/workloads/controllers/deployment#c1",
+        "v1.31:concepts/workloads/controllers/deployment#c1"
+      ],
+      "latency_ms": 17936,
+      "retrieval_ms": 162,
+      "llm_ms": 17759,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-036",
+      "type": "procedural",
+      "question": "How do I create a Secret with kubectl?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "In Kubernetes 1.27, and In Kubernetes 1.31,, you can create a Secret using the kubectl create secret command [v1.27:tasks/inject-data-application/distribute-credentials-secure#c4]. For example, to create a Secret that stores the username 'my-app' and the password '39528$vdg7Jb', you would use the command: [v1.27:tasks/inject-data-application/distribute-credentials-secure#c4].",
+      "citations": [
+        {
+          "doc_id": "tasks/inject-data-application/distribute-credentials-secure",
+          "chunk_id": "v1.27:tasks/inject-data-application/distribute-credentials-secure#c4",
+          "version": "1.27",
+          "quote": "If you want to skip the Base64 encoding step, you can create the same Secret using the kubectl create secret command."
+        },
+        {
+          "doc_id": "tasks/inject-data-application/distribute-credentials-secure",
+          "chunk_id": "v1.27:tasks/inject-data-application/distribute-credentials-secure#c4",
+          "version": "1.27",
+          "quote": "kubectl create secret generic test-secret --from-literal='username=my-app' --from-literal='password=39528$vdg7Jb'"
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/configuration/secret#c13",
+        "v1.31:concepts/configuration/secret#c13",
+        "v1.27:tasks/configmap-secret/managing-secret-using-kubectl#c2",
+        "v1.31:tasks/configmap-secret/managing-secret-using-kubectl#c2",
+        "v1.27:tasks/inject-data-application/distribute-credentials-secure#c4",
+        "v1.31:tasks/inject-data-application/distribute-credentials-secure#c4",
+        "v1.27:tasks/inject-data-application/distribute-credentials-secure#c3",
+        "v1.31:tasks/inject-data-application/distribute-credentials-secure#c3",
+        "v1.27:tasks/configmap-secret/managing-secret-using-kubectl#c6",
+        "v1.31:tasks/configmap-secret/managing-secret-using-kubectl#c6"
+      ],
+      "latency_ms": 16431,
+      "retrieval_ms": 150,
+      "llm_ms": 16261,
+      "is_correct": false,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": "Missing must_include terms: ['generic']",
+      "why_wrong": "Missing must_include terms: ['generic']"
+    },
+    {
+      "qid": "Q-037",
+      "type": "procedural",
+      "question": "How do I configure an HTTP liveness probe for a container?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "To configure an HTTP liveness probe for a container, you can use the following configuration in your YAML file: [v1.31:tasks/configure-pod-container/configure-liveness-readiness-startup-probes#c3]\n\n```yaml\nlivenessProbe:\n httpGet:\n path: /healthz\n port: <container-port>\n```\n[v1.31:tasks/configure-pod-container/configure-liveness-readiness-startup-probes#c3]",
+      "citations": [
+        {
+          "doc_id": "tasks/configure-pod-container/configure-liveness-readiness-startup-probes",
+          "chunk_id": "v1.31:tasks/configure-pod-container/configure-liveness-readiness-startup-probes#c3",
+          "version": "1.31",
+          "quote": "In the configuration file, you can see that the Pod has a single container."
+        },
+        {
+          "doc_id": "tasks/configure-pod-container/configure-liveness-readiness-startup-probes",
+          "chunk_id": "v1.31:tasks/configure-pod-container/configure-liveness-readiness-startup-probes#c3",
+          "version": "1.31",
+          "quote": "livenessProbe:\n      httpGet:\n        path: /healthz\n        port: 8080\n        httpHeaders:\n        - name: Custom-Header\n          value: Awesome\n      initialDelaySeconds: 3\n      periodSeconds: 3"
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.31:tasks/configure-pod-container/configure-liveness-readiness-startup-probes#c3",
+        "v1.27:tasks/configure-pod-container/configure-liveness-readiness-startup-probes#c3",
+        "v1.31:tasks/configure-pod-container/configure-liveness-readiness-startup-probes#c6",
+        "v1.27:tasks/configure-pod-container/configure-liveness-readiness-startup-probes#c6",
+        "v1.31:tasks/configure-pod-container/configure-liveness-readiness-startup-probes#c7",
+        "v1.27:tasks/configure-pod-container/configure-liveness-readiness-startup-probes#c7",
+        "v1.31:tasks/configure-pod-container/configure-liveness-readiness-startup-probes#c0",
+        "v1.27:tasks/configure-pod-container/configure-liveness-readiness-startup-probes#c0",
+        "v1.27:tasks/configure-pod-container/configure-liveness-readiness-startup-probes#c10",
+        "v1.31:tasks/configure-pod-container/configure-liveness-readiness-startup-probes#c10"
+      ],
+      "latency_ms": 22740,
+      "retrieval_ms": 169,
+      "llm_ms": 22544,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-038",
+      "type": "procedural",
+      "question": "How do I taint a node so Pods are not scheduled on it?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "To taint a node so Pods are not scheduled on it, you can use the command ```shell kubectl taint nodes node1 key1=value1:NoSchedule ``` where `node1` is the name of the node and `key1=value1` is the taint key and value [v1.31:concepts/scheduling-eviction/taint-and-toleration#c1]. This taint has an effect of `NoSchedule`, meaning no Pod will be able to schedule onto the node unless it has a matching toleration [v1.31:concepts/scheduling-eviction/taint-and-toleration#c1].",
+      "citations": [
+        {
+          "doc_id": "concepts/scheduling-eviction/taint-and-toleration",
+          "chunk_id": "v1.31:concepts/scheduling-eviction/taint-and-toleration#c1",
+          "version": "1.31",
+          "quote": "However, if you manually specify the .spec.nodeName for a Pod, that action bypasses the scheduler; the Pod is then bound onto the node where you assigned it, even if there are NoSchedule taints on that node that you selected."
+        },
+        {
+          "doc_id": "concepts/scheduling-eviction/taint-and-toleration",
+          "chunk_id": "v1.31:concepts/scheduling-eviction/taint-and-toleration#c1",
+          "version": "1.31",
+          "quote": "This means that no pod will be able to schedule onto node1 unless it has a matching toleration."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/scheduling-eviction/taint-and-toleration#c5",
+        "v1.31:concepts/scheduling-eviction/taint-and-toleration#c5",
+        "v1.31:concepts/scheduling-eviction/taint-and-toleration#c1",
+        "v1.27:tasks/debug/debug-application/debug-pods#c3",
+        "v1.31:tasks/debug/debug-application/debug-pods#c3",
+        "v1.27:tasks/configure-pod-container/assign-pods-nodes#c4",
+        "v1.31:tasks/configure-pod-container/assign-pods-nodes#c4",
+        "v1.27:concepts/configuration/manage-resources-containers#c22",
+        "v1.31:concepts/configuration/manage-resources-containers#c23",
+        "v1.27:concepts/scheduling-eviction/taint-and-toleration#c2"
+      ],
+      "latency_ms": 20863,
+      "retrieval_ms": 144,
+      "llm_ms": 20696,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-039",
+      "type": "procedural",
+      "question": "How do I scale a Deployment with kubectl?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "To scale a Deployment with kubectl, use the following command: [v1.27:concepts/workloads/controllers/deployment#c10]\n\n```shell\nkubectl scale deployment/nginx-deployment --replicas=10\n```\n[v1.27:concepts/workloads/controllers/deployment#c10]",
+      "citations": [
+        {
+          "doc_id": "concepts/workloads/controllers/deployment",
+          "chunk_id": "v1.27:concepts/workloads/controllers/deployment#c10",
+          "version": "1.27",
+          "quote": "You can scale a Deployment by using the following command:"
+        },
+        {
+          "doc_id": "concepts/workloads/controllers/deployment",
+          "chunk_id": "v1.27:concepts/workloads/controllers/deployment#c10",
+          "version": "1.27",
+          "quote": "kubectl scale deployment/nginx-deployment --replicas=10"
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/workloads/controllers/deployment#c10",
+        "v1.31:concepts/workloads/controllers/deployment#c10",
+        "v1.27:concepts/cluster-administration/manage-deployment#c7",
+        "v1.31:concepts/workloads/controllers/deployment#c11",
+        "v1.27:concepts/workloads/controllers/deployment#c11",
+        "v1.31:concepts/workloads/management#c12",
+        "v1.27:concepts/cluster-administration/manage-deployment#c13",
+        "v1.27:tasks/run-application/run-stateless-application-deployment#c5",
+        "v1.31:tasks/run-application/run-stateless-application-deployment#c5",
+        "v1.31:concepts/workloads/management#c8"
+      ],
+      "latency_ms": 19765,
+      "retrieval_ms": 131,
+      "llm_ms": 19613,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-040",
+      "type": "multi_chunk",
+      "question": "What are the QoS classes of a Pod and how is each one assigned?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Kubernetes assigns a QoS class to each Pod based on the resource requests and limits of its component Containers, resulting in three classes: Guaranteed, Burstable, and BestEffort [v1.27:concepts/workloads/pods/pod-qos#c1].",
+      "citations": [
+        {
+          "doc_id": "concepts/workloads/pods/pod-qos",
+          "chunk_id": "v1.27:concepts/workloads/pods/pod-qos#c1",
+          "version": "1.27",
+          "quote": "Kubernetes assigns every Pod a QoS class based on the resource requests and limits of its component Containers."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/workloads/pods/pod-qos#c0",
+        "v1.31:concepts/workloads/pods/pod-qos#c0",
+        "v1.27:concepts/workloads/pods/pod-qos#c1",
+        "v1.31:concepts/workloads/pods/pod-qos#c1",
+        "v1.27:tasks/configure-pod-container/quality-service-pod#c0",
+        "v1.31:tasks/configure-pod-container/quality-service-pod#c0",
+        "v1.27:tasks/configure-pod-container/quality-service-pod#c5",
+        "v1.31:tasks/configure-pod-container/quality-service-pod#c5",
+        "v1.27:concepts/workloads/pods/pod-qos#c5",
+        "v1.31:concepts/workloads/pods/pod-qos#c5"
+      ],
+      "latency_ms": 37588,
+      "retrieval_ms": 161,
+      "llm_ms": 37407,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-041",
+      "type": "table_or_code",
+      "question": "What are the possible Pod phases?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "The possible Pod phases are: Pending, Running, Succeeded, and Failed [v1.27:concepts/workloads/pods/pod-lifecycle#c2]. The possible Pod phases are: Pending, Running, Succeeded, Failed, and Unknown [v1.27:concepts/workloads/pods/pod-lifecycle#c2].",
+      "citations": [
+        {
+          "doc_id": "concepts/workloads/pods/pod-lifecycle",
+          "chunk_id": "v1.27:concepts/workloads/pods/pod-lifecycle#c2",
+          "version": "1.27",
+          "quote": "Here are the possible values for phase: Value | Description :-----------|:----------- Pending | The Pod has been accepted by the Kubernetes cluster, but one or more of the containers has not been set up and made ready to run."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.31:concepts/workloads/pods/pod-lifecycle#c4",
+        "v1.27:concepts/workloads/pods/pod-lifecycle#c2",
+        "v1.27:concepts/scheduling-eviction/taint-and-toleration#c5",
+        "v1.31:concepts/scheduling-eviction/taint-and-toleration#c5",
+        "v1.31:concepts/workloads/pods/pod-lifecycle#c0",
+        "v1.27:concepts/scheduling-eviction/pod-scheduling-readiness#c5",
+        "v1.31:concepts/scheduling-eviction/pod-scheduling-readiness#c5",
+        "v1.27:concepts/workloads/pods/pod-lifecycle#c3",
+        "v1.31:concepts/workloads/pods/pod-lifecycle#c5",
+        "v1.27:tasks/configure-pod-container/configure-pod-initialization#c3"
+      ],
+      "latency_ms": 30507,
+      "retrieval_ms": 1071,
+      "llm_ms": 29391,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-042",
+      "type": "multi_chunk",
+      "question": "What does a PodDisruptionBudget do and which fields does it use?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "A PodDisruptionBudget (PDB) allows application owners to limit the number of Pods of a replicated application that are down simultaneously from voluntary disruptions [v1.27:concepts/scheduling-eviction/pod-priority-preemption#c12]. It uses three fields: - A label selector.spec.selector to specify the set of pods to which it applies [v1.27:tasks/run-application/configure-pdb#c6]. This field is required [v1.27:tasks/run-application/configure-pdb#c6]. -.spec.minAvailable which is a description of the number of pods from that set that must still be available after the eviction, even in the absence of the evicted pod [v1.27:tasks/run-application/configure-pdb#c6]. minAvailable can be either an absolute number or a percentage [v1.27:tasks/run-application/configure-pdb#c6]. -.spec.maxUnavailable (available in Kubernetes 1.7 and higher) which is a description of the number of pods from that set that can be unavailable after the eviction [v1.27:tasks/run-application/configure-pdb#c6]. It can be either an absolute number or a percentage [v1.27:tasks/run-application/configure-pdb#c6].",
+      "citations": [
+        {
+          "doc_id": "concepts/scheduling-eviction/pod-priority-preemption",
+          "chunk_id": "v1.27:concepts/scheduling-eviction/pod-priority-preemption#c12",
+          "version": "1.27",
+          "quote": "A PodDisruptionBudget (PDB) allows application owners to limit the number of Pods of a replicated application that are down simultaneously from voluntary disruptions."
+        },
+        {
+          "doc_id": "tasks/run-application/configure-pdb",
+          "chunk_id": "v1.27:tasks/run-application/configure-pdb#c6",
+          "version": "1.27",
+          "quote": "A PodDisruptionBudget has three fields: - A label selector .spec.selector to specify the set of pods to which it applies."
+        },
+        {
+          "doc_id": "tasks/run-application/configure-pdb",
+          "chunk_id": "v1.27:tasks/run-application/configure-pdb#c6",
+          "version": "1.27",
+          "quote": "This field is required."
+        },
+        {
+          "doc_id": "tasks/run-application/configure-pdb",
+          "chunk_id": "v1.27:tasks/run-application/configure-pdb#c6",
+          "version": "1.27",
+          "quote": "- .spec.minAvailable which is a description of the number of pods from that set that must still be available after the eviction, even in the absence of the evicted pod."
+        },
+        {
+          "doc_id": "tasks/run-application/configure-pdb",
+          "chunk_id": "v1.27:tasks/run-application/configure-pdb#c6",
+          "version": "1.27",
+          "quote": "minAvailable can be either an absolute number or a percentage."
+        },
+        {
+          "doc_id": "tasks/run-application/configure-pdb",
+          "chunk_id": "v1.27:tasks/run-application/configure-pdb#c6",
+          "version": "1.27",
+          "quote": "- .spec.maxUnavailable (available in Kubernetes 1.7 and higher) which is a description of the number of pods from that set that can be unavailable after the eviction."
+        },
+        {
+          "doc_id": "tasks/run-application/configure-pdb",
+          "chunk_id": "v1.27:tasks/run-application/configure-pdb#c6",
+          "version": "1.27",
+          "quote": "It can be either an absolute number or a percentage."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/scheduling-eviction/pod-priority-preemption#c12",
+        "v1.31:concepts/scheduling-eviction/pod-priority-preemption#c12",
+        "v1.27:tasks/run-application/configure-pdb#c2",
+        "v1.31:tasks/run-application/configure-pdb#c2",
+        "v1.27:tasks/run-application/configure-pdb#c6",
+        "v1.31:tasks/run-application/configure-pdb#c6",
+        "v1.27:concepts/workloads/pods/disruptions#c3",
+        "v1.31:concepts/workloads/pods/disruptions#c3",
+        "v1.27:concepts/workloads/pods/downward-api#c2",
+        "v1.31:concepts/workloads/pods/disruptions#c4"
+      ],
+      "latency_ms": 30519,
+      "retrieval_ms": 1023,
+      "llm_ms": 29448,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    },
+    {
+      "qid": "Q-043",
+      "type": "procedural",
+      "question": "How do I set CPU and memory requests and limits for a container?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Assign CPU Resources to Containers and Pods shows how to assign a CPU request and a CPU limit to a container [v1.27:tasks/configure-pod-container/assign-cpu-resource#c0]. Containers cannot use more CPU than the configured limit [v1.27:tasks/configure-pod-container/assign-cpu-resource#c0]. Provided the system has CPU time free, a container is guaranteed to be allocated as much CPU as it requests [v1.27:tasks/configure-pod-container/assign-cpu-resource#c0].",
+      "citations": [
+        {
+          "doc_id": "tasks/configure-pod-container/assign-cpu-resource",
+          "chunk_id": "v1.27:tasks/configure-pod-container/assign-cpu-resource#c0",
+          "version": "1.27",
+          "quote": "This page shows how to assign a CPU request and a CPU limit to a container."
+        },
+        {
+          "doc_id": "tasks/configure-pod-container/assign-cpu-resource",
+          "chunk_id": "v1.27:tasks/configure-pod-container/assign-cpu-resource#c0",
+          "version": "1.27",
+          "quote": "Containers cannot use more CPU than the configured limit."
+        },
+        {
+          "doc_id": "tasks/configure-pod-container/assign-cpu-resource",
+          "chunk_id": "v1.27:tasks/configure-pod-container/assign-cpu-resource#c0",
+          "version": "1.27",
+          "quote": "Provided the system has CPU time free, a container is guaranteed to be allocated as much CPU as it requests."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:tasks/configure-pod-container/resize-container-resources#c7",
+        "v1.31:tasks/configure-pod-container/resize-container-resources#c7",
+        "v1.27:tasks/configure-pod-container/assign-cpu-resource#c0",
+        "v1.31:tasks/configure-pod-container/assign-cpu-resource#c0",
+        "v1.27:tasks/configure-pod-container/assign-cpu-resource#c11",
+        "v1.31:tasks/configure-pod-container/assign-cpu-resource#c11",
+        "v1.27:tasks/administer-cluster/manage-resources/cpu-default-namespace#c9",
+        "v1.31:tasks/administer-cluster/manage-resources/cpu-default-namespace#c9",
+        "v1.27:concepts/configuration/manage-resources-containers#c3",
+        "v1.31:concepts/configuration/manage-resources-containers#c3"
+      ],
+      "latency_ms": 15095,
+      "retrieval_ms": 211,
+      "llm_ms": 14866,
+      "is_correct": false,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": "Missing must_include terms: ['limits']",
+      "why_wrong": "Missing must_include terms: ['limits']"
+    },
+    {
+      "qid": "Q-044",
+      "type": "multi_chunk",
+      "question": "How does a Job track completions and what does parallelism control?",
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "When.spec.completions is specified, the Job is considered complete when there are that many successful Pods [v1.27:concepts/workloads/controllers/job#c6]. Parallelism (.spec.parallelism) controls the maximum number of Pods that can run in parallel [v1.27:concepts/workloads/controllers/job#c7]. For Jobs with a fixed completion count, the actual number of running Pods does not exceed the number of remaining completions [v1.27:concepts/workloads/controllers/job#c7]. For Jobs with a work queue, parallelism controls the maximum number of Pods that can be created, and once any Pod from the Job terminates with success, no new Pods are created [v1.27:concepts/workloads/controllers/job#c6]. In both cases, higher values of.spec.parallelism are effectively ignored [v1.27:concepts/workloads/controllers/job#c7].",
+      "citations": [
+        {
+          "doc_id": "concepts/workloads/controllers/job",
+          "chunk_id": "v1.27:concepts/workloads/controllers/job#c6",
+          "version": "1.27",
+          "quote": "- the Job represents the overall task, and is complete when there are .spec.completions successful Pods."
+        },
+        {
+          "doc_id": "concepts/workloads/controllers/job",
+          "chunk_id": "v1.27:concepts/workloads/controllers/job#c7",
+          "version": "1.27",
+          "quote": "Actual parallelism (number of pods running at any instant) may be more or less than requested parallelism, for a variety of reasons: - For fixed completion count Jobs, the actual number of pods running in parallel will not exceed the number of remaining completions."
+        },
+        {
+          "doc_id": "concepts/workloads/controllers/job",
+          "chunk_id": "v1.27:concepts/workloads/controllers/job#c6",
+          "version": "1.27",
+          "quote": "- when any Pod from the Job terminates with success, no new Pods are created."
+        },
+        {
+          "doc_id": "concepts/workloads/controllers/job",
+          "chunk_id": "v1.27:concepts/workloads/controllers/job#c7",
+          "version": "1.27",
+          "quote": "Higher values of .spec.parallelism are effectively ignored."
+        }
+      ],
+      "retrieved_chunk_ids": [
+        "v1.27:concepts/workloads/controllers/job#c7",
+        "v1.31:concepts/workloads/controllers/job#c7",
+        "v1.27:concepts/workloads/controllers/job#c6",
+        "v1.31:concepts/workloads/controllers/job#c6",
+        "v1.31:tasks/job/fine-parallel-processing-work-queue#c6",
+        "v1.31:tasks/job/coarse-parallel-processing-work-queue#c6",
+        "v1.27:tasks/job/indexed-parallel-processing-static#c2",
+        "v1.31:tasks/job/indexed-parallel-processing-static#c2",
+        "v1.27:tasks/job/fine-parallel-processing-work-queue#c6",
+        "v1.27:tasks/job/parallel-processing-expansion#c8"
+      ],
+      "latency_ms": 31196,
+      "retrieval_ms": 127,
+      "llm_ms": 31041,
+      "is_correct": true,
+      "answered_and_verified": true,
+      "version_conflict_grader_pass": null,
+      "failed_condition": null,
+      "why_wrong": null
+    }
+  ]
+}
